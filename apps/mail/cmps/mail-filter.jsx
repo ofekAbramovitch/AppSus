@@ -2,5 +2,7 @@
 
 
 export function MailFilter() {
-    return
+    return <section className="mail-filter">
+        <input type="text" />
+    </section>
 }

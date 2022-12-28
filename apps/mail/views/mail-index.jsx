@@ -6,9 +6,11 @@ import { mailService } from "../services/mail.service.js"
 import { MailList } from "../cmps/mail-list.jsx"
 import { MailHeader } from "../cmps/mail-header.jsx"
 import { MailFolderList} from "../cmps/mail-folder-list.jsx"
+import { MailCompose } from "../cmps/mail-compose.jsx"
 
 export function MailIndex() {
     const [mails, setMails] = useState([])
+    const [isSendEmail, setIsSendEmail] = useState(false)
 
     useEffect(() => {
         loadMails()
@@ -19,12 +21,24 @@ export function MailIndex() {
         mailService.query().then(setMails)
     }
 
+    function sendMail() {
+        setIsSendEmail(false)
+    }
+
     if(!mails.length) return <div>loading...</div>
     return <section className="mail-app">
-        <h1>hello mail</h1>
-        {/* <MailHeader /> */}
-        <MailList mails={mails}/>
-        {/* <MailFolderList /> */}
+        <MailHeader />
+        <div className="mail-content layout">
+            <div>
+                {isSendEmail && <MailList mails={mails}/>}
+                {isSendEmail && <MailCompose />}
+            </div>
+            <div className="folder-list-container">
+                <button onClick={() => {setIsSendEmail(true)}}><i class="fa-solid fa-plus"></i> Compose</button>
+                <MailFolderList />
+            </div>
+        </div>
+        
     </section>
 
 

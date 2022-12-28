@@ -34,7 +34,7 @@ nav a:active {
     color: purple;
 }
 
-nav a.active {
+header nav a.active {
     color: darkblue;
     font-weight: bold;
     text-decoration: overline;

@@ -1,6 +1,6 @@
 const { useState } = React
 
-export function LongTxt({txt, length = 100}) {
+export function LongTxt({txt, length = 100, isUseButton}) {
     const [isRenderAll, setIsRenderAll] = useState(false)
 
     function renderTxt() {
@@ -15,6 +15,6 @@ export function LongTxt({txt, length = 100}) {
 
     return <div>
         <div>{renderTxt()}</div>
-        <div className="toggle-txt" onClick={() => setIsRenderAll(prevIsRenderAll => !prevIsRenderAll)}>{isRenderAll ? 'less' : 'more'}</div>
+        {isUseButton && <div className="toggle-txt" onClick={() => setIsRenderAll(prevIsRenderAll => !prevIsRenderAll)}>{isRenderAll ? 'less' : 'more'}</div>}
     </div>
 }

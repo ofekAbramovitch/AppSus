@@ -23,6 +23,7 @@ function _createMails() {
     const mails = [
         {
         id: 'e101',
+        name: 'Ben',
         subject: 'Miss you!',
         body: 'Would love to catch up sometimes',
         isRead: false,
@@ -31,6 +32,7 @@ function _createMails() {
         }, 
         {
         id: 'e102',
+        name: 'Idan',
         subject: 'Miss you!',
         body: 'Would love to catch up sometimes',
         isRead: false,
@@ -39,6 +41,7 @@ function _createMails() {
         }, 
         {
         id: 'e103',
+        name: 'Gal',
         subject: 'Miss you!',
         body: 'Would love to catch up sometimes',
         isRead: false,
@@ -47,6 +50,7 @@ function _createMails() {
         }, 
         {
         id: 'e104',
+        name: 'Dan',
         subject: 'Miss you!',
         body: 'Would love to catch up sometimes',
         isRead: false,
