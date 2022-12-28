@@ -5,5 +5,8 @@
     --mail-color: #202124;
     --mail-list-bg-color: white;
     --mail-icon-color: #5f6368;
+    /* note color */
+    --note-bg-color: #fff;
+    --note-color: #202124;
+    
 }
-
