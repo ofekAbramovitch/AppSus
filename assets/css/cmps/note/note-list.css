@@ -1,0 +1,12 @@
+.note-list {
+    column-gap: 10px;
+    column-count: 4;
+    padding: 10px;
+}
+
+.note-list li {
+    width: 100%;
+    margin-bottom: 20px;
+    /* min-height: 200px; */
+    background-color: yellow;
+}

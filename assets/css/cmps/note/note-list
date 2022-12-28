@@ -1,5 +1,0 @@
-.note-list {
-    margin-top: 5rem;
-    columns: 5;
-    column-gap: 1rem;
-}

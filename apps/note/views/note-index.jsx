@@ -13,13 +13,15 @@ export function NoteIndex() {
         noteService.query().then(setNotes)
     }, [])
 
+    function loadNotes() {
+        noteService.query().then(setNotes)
+    }
+
     if (!notes || !notes.length) return <div>Loading...</div>
     return (
         <div className='note-index'>
-            {console.log(notes)}
             <AddNote setNotes={setNotes} />
-            <NoteList notes={notes} />
-            
+            <NoteList notes={notes} setNotes={loadNotes} />
         </div>
     )
 }

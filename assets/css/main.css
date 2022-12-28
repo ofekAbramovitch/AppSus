@@ -20,10 +20,10 @@
 /* Cmps */
 @import './cmps/user-msg.css';
 @import './cmps/app-header.css';
-@import './cmps/note/add-note';
-@import './cmps/note/note-index';
-@import './cmps/note/note-list';
-@import './cmps/note/note-preview';
+@import './cmps/note/add-note.css';
+@import './cmps/note/note-index.css';
+@import './cmps/note/note-list.css';
+@import './cmps/note/note-preview.css';
 
 
 

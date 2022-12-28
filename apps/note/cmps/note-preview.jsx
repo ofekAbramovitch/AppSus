@@ -1,11 +1,10 @@
 
 
-
 export function NotePreview({ note }) {
+
     return <section className="note-preview">
-       dfgdfgdfg
-        {/* <DynamicCmp type={note.type} info={note.info}
-            onChangeInfo={info => onChangeInfo(note.id, info)} /> */}
+        <DynamicCmp type={note.type} info={note.info}
+            onChangeInfo={info => onChangeInfo(note.id, info)} />
     </section>
 }
 
