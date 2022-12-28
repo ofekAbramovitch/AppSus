@@ -1,0 +1,56 @@
+.add-note {
+    border: 1px solid black;
+    outline: none;
+    max-width: 600px;
+    margin: 0 auto;
+    display: block;
+}
+
+.add-note input {
+    outline: none;
+    border: none;
+    padding: 0.65em 2em;
+}
+
+.add-note input:hover {
+    outline: none;
+    color: #fff;
+    background-color: #171c26;
+}
+
+.add-note input:focus {
+    color: #fff;
+    border-radius: 8px;
+    outline: none;
+    color: #fff;
+    background-color: #171c26;
+}
+
+.add-note button {
+    display: inline-block;
+}
+
+.add-note .utils {
+    padding: 0 1.4rem;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 0.5rem;
+}
+
+.add-note .utils>* {
+    margin: 0 0.2rem;
+}
+
+.add-note .inline-utils {
+    display: flex;
+}
+
+.add-note .inline-utils>* {
+    margin: 0.4rem;
+}
+
+.main-input {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

@@ -1,0 +1,7 @@
+.note-preview {
+    padding: 0.6em 1.9em 1.3em;
+    display: inline-block;
+    margin: 0 1rem 1rem 0;
+    width: 100%;
+    min-height: 100px;
+}

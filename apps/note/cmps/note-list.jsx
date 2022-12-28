@@ -1,12 +1,15 @@
-import { NotePreview } from "./note-preview";
+import { NotePreview } from './note-preview.jsx'
 
+export function NoteList({ notes }) {
+    if (!notes || !notes.length) return <div>Loading...</div>
 
-
-export function NoteList() {
-
-    return <section>
-        note list
-        <NotePreview />
-        </section>
-
+    return (
+        <ul className="note-list">
+    {
+        notes.map(note => <li key={note.id}>
+            <MailPreview note={note} />
+        </li>)
+    }
+    </ul>
+    )
 }

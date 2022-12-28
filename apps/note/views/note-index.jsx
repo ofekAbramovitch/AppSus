@@ -1,13 +1,25 @@
-import { NoteHeader } from "../cmps/note-header";
-import { NoteList } from "../cmps/note-list";
+const { useState, useEffect } = React
 
-import { noteService } from "../services/note.service";
+import { NoteList } from '../cmps/note-list.jsx'
+import { AddNote } from '../cmps/add-note.jsx'
+
+import { noteService } from '../services/note.service.js'
+
 
 export function NoteIndex() {
+    const [notes, setNotes] = useState([])
 
-    return <section>
-        <NoteHeader />
-        <NoteList />
-    </section>
+    useEffect(() => {
+        noteService.query().then(setNotes)
+    }, [])
 
+    if (!notes || !notes.length) return <div>Loading...</div>
+    return (
+        <div className='note-index'>
+            {console.log(notes)}
+            <AddNote setNotes={setNotes} />
+            <NoteList notes={notes} />
+            
+        </div>
+    )
 }
