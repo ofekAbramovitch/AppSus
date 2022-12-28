@@ -22,8 +22,7 @@
 .mail-app button{
     background-color: #c2e7ff;
     border-radius: 10px;
-    /* height: 110px; */
-    padding: 30px;
+    padding: 20px;
     font-size: large;
 }
 

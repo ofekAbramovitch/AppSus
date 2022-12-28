@@ -12,7 +12,7 @@ export function Home() {
             <div>
             <Link to="/note"><img  src="./assets/img/note.webp"/></Link>
             <Link to="/book"><img src="./assets/img/book.png"/></Link>
-            <Link to="/mail"><img  src="./assets/img/gmail.png"/></Link>
+            <Link to="/mail/inbox"><img  src="./assets/img/gmail.png"/></Link>
             </div>
         </div>
     </section>

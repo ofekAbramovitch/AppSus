@@ -14,7 +14,7 @@
     background-color: darkgray;
 }
 
-nav a.active {
+.mail-folder-list nav a.active {
     background-color: cornflowerblue;
     font-weight: bold;
 }
