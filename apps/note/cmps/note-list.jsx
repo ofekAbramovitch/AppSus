@@ -1,5 +1,12 @@
+import { NotePreview } from "./note-preview";
+
+
+
 export function NoteList() {
 
-    return <div>note list</div>
+    return <section>
+        note list
+        <NotePreview />
+        </section>
 
 }

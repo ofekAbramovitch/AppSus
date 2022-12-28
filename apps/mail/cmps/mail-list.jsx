@@ -1,5 +1,11 @@
+import { MailPreview } from "./mail-preview";
+
+
 export function MailList() {
 
-    return <div>Mail list</div>
+    return <section className="mail-list">
+        Mail list
+        <MailPreview />
+    </section>
 
 }
