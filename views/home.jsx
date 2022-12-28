@@ -1,7 +1,16 @@
+const { Link } = ReactRouterDOM
 
 export function Home() {
 
     return <section className="home">
-        <h1>Welcome to home page!</h1>
+        <div className="home-content layout">
+            <h1>Welcome to Appsus</h1>
+            <div>
+            <Link to="/note"><img  src="./assets/img/note.webp"/></Link>
+            <Link to="/book"><img src="./assets/img/book.png"/></Link>
+            <Link to="/mail"><img  src="./assets/img/gmail.ico"/></Link>
+            </div>
+        </div>
+        
     </section>
 }
