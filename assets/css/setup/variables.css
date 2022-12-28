@@ -1,4 +1,9 @@
 :root {
     --main-bg-color: lightblue;
+    /* mail color */
+    --mail-bg-color: #f6f8fc;
+    --mail-color: #202124;
+    --mail-list-bg-color: white;
+    --mail-icon-color: #5f6368;
 }
 
