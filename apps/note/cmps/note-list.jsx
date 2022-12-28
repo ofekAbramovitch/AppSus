@@ -6,7 +6,8 @@ export function NoteList({ notes }) {
     return (
         <ul className="note-list">
     {
-        notes.map(note => <li key={note.id}>
+        notes.map(note => <li key={note.id}>dfgdfgdfg
+        
             <MailPreview note={note} />
         </li>)
     }
