@@ -1,11 +1,15 @@
 import { MailPreview } from "./mail-preview";
 
 
-export function MailList() {
+export function MailList({mails}) {
 
-    return <section className="mail-list">
-        Mail list
-        <MailPreview />
-    </section>
+    if(!mails.length) return <div>loading...</div>
+    return <ul className="mail-list">
+    {
+        mails.map(mail => <li key={mail.id}>
+            <MailPreview book={book} />
+        </li>)
+    }
+    </ul>
 
 }
