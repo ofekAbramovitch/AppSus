@@ -1,4 +1,4 @@
-.note-list {
+/* .note-list {
     column-gap: 10px;
     column-count: 4;
     padding: 10px;
@@ -8,5 +8,21 @@
     width: 100%;
     margin-bottom: 20px;
     /* min-height: 200px; */
+    /* background-color: yellow; */
+/* }  */
+
+.note-list {
+    padding: 15px 0 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+.note-list li {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
     background-color: yellow;
 }
