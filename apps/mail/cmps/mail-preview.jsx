@@ -1,7 +1,11 @@
-
+import { LongTxt } from "../../../cmps/long-txt"
 
 export function MailPreview({mail}) {
-    return <section className="mail-preview">
-        <h1>lalala</h1>
-    </section>
+    return <article className="mail-preview">
+        <div>{mail.name}</div>
+        <div>
+            <h3>{mail.subject}</h3>
+            <div>- {mail.body}</div>
+        </div>
+    </article>
 }

@@ -1,0 +1,20 @@
+
+.mail-folder-list nav{
+    display: flex;
+    flex-direction: column;
+}
+
+.mail-folder-list nav a{
+    padding: 10px;
+    border-bottom-right-radius: 50px;
+    border-top-right-radius: 50px;
+}
+
+.mail-folder-list nav a:not(.active):hover {
+    background-color: darkgray;
+}
+
+nav a.active {
+    background-color: cornflowerblue;
+    font-weight: bold;
+}

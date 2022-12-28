@@ -1,0 +1,36 @@
+.mail-app {
+    background-color: var(--mail-bg-color);
+    height: 100vh;
+}
+
+.mail-content {
+    display: grid;
+    padding-top: 20px;
+    grid-column: 2fr, 4fr;
+    grid-template-areas:
+    "folder list";
+}
+
+.mail-app .folder-list-container {
+    grid-area: folder;
+}
+
+.mail-app .mail-list {
+    grid-area: list;
+}
+
+.mail-app button{
+    background-color: #c2e7ff;
+    border-radius: 10px;
+    /* height: 110px; */
+    padding: 30px;
+    font-size: large;
+}
+
+.folder-list-container{
+    font-size: large;
+}
+
+
+
+

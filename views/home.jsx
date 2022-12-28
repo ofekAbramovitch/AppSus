@@ -1,8 +1,12 @@
 const { Link } = ReactRouterDOM
 
+import { AppHeader } from "../cmps/app-header"
+
 export function Home() {
 
-    return <section className="home">
+    return <div>
+        <AppHeader />
+        <section className="home">
         <div className="home-content layout">
             <h1>Welcome to Appsus</h1>
             <div>
@@ -11,6 +15,7 @@ export function Home() {
             <Link to="/mail"><img  src="./assets/img/gmail.png"/></Link>
             </div>
         </div>
-        
     </section>
+    </div>
+    
 }

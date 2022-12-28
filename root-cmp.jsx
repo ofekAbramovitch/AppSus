@@ -13,11 +13,14 @@ import { MailDetails } from "./apps/mail/cmps/mail-details.jsx"
 export function App() {
     return <Router>
         <section className="app">
-            <AppHeader />
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/mail" element={<MailIndex />} />
+                <Route path="/mail:inbox" element={<MailIndex />} />
+                <Route path="/mail:starred" element={<MailIndex />} />
+                <Route path="/mail:set-mail" element={<MailIndex />} />
+                <Route path="/mail:draft" element={<MailIndex />} />
                 <Route path="/mail:id" element={<MailDetails />} />
                 <Route path="/note" element={<NoteIndex />} />
             </Routes>

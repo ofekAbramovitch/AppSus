@@ -21,10 +21,15 @@ export function MailIndex() {
 
     if(!mails.length) return <div>loading...</div>
     return <section className="mail-app">
-        <h1>hello mail</h1>
-        {/* <MailHeader /> */}
-        <MailList mails={mails}/>
-        {/* <MailFolderList /> */}
+        <MailHeader />
+        <div className="mail-content layout">
+            <MailList mails={mails}/>
+            <div className="folder-list-container">
+                <button><i class="fa-solid fa-plus"></i> add mail</button>
+                <MailFolderList />
+            </div>
+        </div>
+        
     </section>
 
 
