@@ -50,6 +50,8 @@ export function AddNote({ note, setNotes, isEditing, setIsEditing }) {
         })
     }
 
+    
+
     function clear() {
         setIsWriting(false)
         setaddParams(noteService.getDefaultNote())
@@ -101,7 +103,7 @@ export function AddNote({ note, setNotes, isEditing, setIsEditing }) {
                             <i className='fa-solid fa-palette'></i>
                         </button>
                         <button className='btn btn-rnd-s'>
-                            <i className='fa-solid fa-location-dot'></i>
+                            <i className='fa-solid '></i>
                         </button>
                     </div>
                     <button className='btn add-btn btn-primary' onClick={addNote}>

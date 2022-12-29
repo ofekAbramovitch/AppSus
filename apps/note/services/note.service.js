@@ -50,13 +50,14 @@ function getDefaultNote() {
     }
 }
 
-function _createNote(txt) {
+function _createNote(title, body) {
     return {
         id: utilService.makeId(),
         type: 'note-txt',
         isPinned: false,
         info: {
-            txt,
+            title,
+            body
         },
     }
 }
@@ -65,9 +66,9 @@ function _createNotes() {
     let notes = utilService.loadFromStorage(NOTES_KEY)
     if (!notes || !notes.length) {
         notes = [
-            _createNote('Hello I\'m a Note'),
-            _createNote('Note number 2!'),
-            _createNote('What is this? Note number 3!'),
+            _createNote('hello', 'Hello I\'m a Note'),
+            _createNote('hi', 'Note number 2!'),
+            _createNote('ho', 'What is this? Note number 3!'),
         ]
     }
     utilService.saveToStorage(NOTES_KEY, notes)

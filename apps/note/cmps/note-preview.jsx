@@ -1,44 +1,25 @@
 const { useState, useRef } = React
 
-export function NotePreview({ note, setNotes, removeNote }) {
+export function NotePreview({ note }) {
+
     const [isEditing, setIsEditing] = useState(false)
-    const [isInPalette, setIsInPalette] = useState(false)
-    const noteRef = useRef(null)
-   
-    function setColor(ev, color) {
-        ev.stopPropagation()
-        note.style = { ...note.style }
-        note.style.backgroundColor = color
-        noteService.saveNote(note).then(newNote => {
-            setNotes(prevNotes => {
-                prevNotes[prevNotes.findIndex(note => note.id === newNote.id)] = newNote
-                return [...prevNotes]
-            })
-        })
+
+    function onChangeInfo(id, info) {
+        const notesToSave = note
+        notesToSave[id] = info
+        setNotes(notesToSave)
     }
 
-    function onRemoveNote(ev) {
-        ev.stopPropagation()
-        removeNote(note.id)
-    }
-
-    function onHover(ev) {
-        noteRef.current.classList.add('z-2')
-    }
-    function onHoverLeave(ev) {
-        noteRef.current.classList.remove('z-2')
-    }
-
-    return <section className="note-preview">
+    return <section className="note-preview" style={note.style} onClick={() => setIsEditing(true)}>
         <DynamicCmp type={note.type} info={note.info}
             onChangeInfo={info => onChangeInfo(note.id, info)} />
     </section>
 }
 
-function DynamicCmp({ type, info }) {
+function DynamicCmp({ type, info, onChangeInfo }) {
     switch (type) {
         case 'note-txt':
-            return <NoteTxt info={info} />
+            return <NoteTxt info={info} onChangeInfo={onChangeInfo} />
         case 'note-img':
             return <NoteImg info={info} />
         case 'note-video':
@@ -48,8 +29,14 @@ function DynamicCmp({ type, info }) {
     }
 }
 
-function NoteTxt({ info }) {
-    return <div>{info.txt}</div>
+function NoteTxt({ info, onChangeInfo }) {
+    return <label className="txt-container">
+        <div onChange={ev => { onChangeInfo(ev.target.value) }}>
+            {console.log(info)}
+            <h5>{info.title}</h5>
+            <p>{info.body}</p>
+        </div>
+    </label>
 }
 
 function NoteImg({ info }) {
