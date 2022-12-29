@@ -2,7 +2,7 @@ const { useState, useEffect, useRef } = React
 
 import { noteService } from '../services/note.service.js'
 
-export function AddNote({ note, setNotes, isEditing, setIsEditing }) {
+export function AddNote({ note, setNotes, isEditing, setIsEditing, noteId }) {
     const [addParams, setaddParams] = useState(noteService.getDefaultNote())
     const [isWriting, setIsWriting] = useState(false || isEditing)
     const inputRef = useRef(null)
@@ -11,26 +11,26 @@ export function AddNote({ note, setNotes, isEditing, setIsEditing }) {
     function handleChange({ target }) {
         let { value, name: field, type } = target
         value = type === 'number' ? +value : value
-        if (target.id === 'txt') {
-            return setaddParams(prev => {
-                prev.info.txt = value
-                return { ...prev }
-            })
-        }
         setaddParams(prev => {
-            return { ...prev, [field]: value }
+            prev.info[field] = value
+            return { ...prev }
         })
+    }
+
+    function onLoadNote(noteId) {
+        noteService.get(noteId)
+            .then(setaddParams)
     }
 
     function useOutsideEvent(ref) {
         useEffect(() => {
-
-            function handleOutsideEvent(event) {
-                if (ref.current && !ref.current.contains(event.target)) {
-                    clear()
-                    if (isEditing) setIsEditing(false)
+            if (noteId) onLoadNote(noteId)
+                function handleOutsideEvent(event) {
+                    if (ref.current && !ref.current.contains(event.target)) {
+                        clear()
+                        if (isEditing) setIsEditing(false)
+                    }
                 }
-            }
             document.addEventListener('mousedown', handleOutsideEvent)
             return () => {
                 document.removeEventListener('mousedown', handleOutsideEvent)
@@ -50,8 +50,6 @@ export function AddNote({ note, setNotes, isEditing, setIsEditing }) {
         })
     }
 
-    
-
     function clear() {
         setIsWriting(false)
         setaddParams(noteService.getDefaultNote())
@@ -65,7 +63,7 @@ export function AddNote({ note, setNotes, isEditing, setIsEditing }) {
                     placeholder='Title'
                     id='title'
                     name='title'
-                    value={addParams.title}
+                    value={addParams.info.title}
                     onChange={handleChange}
                 />
             )}
@@ -73,17 +71,14 @@ export function AddNote({ note, setNotes, isEditing, setIsEditing }) {
                 <input
                     type='text'
                     placeholder='Take a note...'
-                    id='txt'
-                    name='txt'
-                    value={addParams.info.txt}
+                    id='body'
+                    name='body'
+                    value={addParams.info.body}
                     onChange={handleChange}
                     onClick={() => setIsWriting(true)}
                 />
                 {!isWriting && (
                     <div className='inline-utils'>
-                        <button className='btn btn-rnd-s'>
-                            <i className='fa-solid fa-pencil'></i>
-                        </button>
                         <button className='btn btn-rnd-s'>
                             <i className='fa-solid fa-palette'></i>
                         </button>
@@ -96,9 +91,6 @@ export function AddNote({ note, setNotes, isEditing, setIsEditing }) {
             {isWriting && (
                 <div className='utils'>
                     <div className='btns'>
-                        <button className='btn btn-rnd-s'>
-                            <i className='fa-solid fa-pencil'></i>
-                        </button>
                         <button className='btn btn-rnd-s'>
                             <i className='fa-solid fa-palette'></i>
                         </button>
