@@ -7,9 +7,17 @@
 }
 
 .note-list li {
+    border: 1px solid black;
+    border-radius: 3%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    background-color: yellow;
+    background-color:gainsboro;
+}
+
+.note-color div{
+    border-radius: 50%;
+    display: flex;
+    gap: 10px;
 }

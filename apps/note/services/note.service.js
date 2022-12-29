@@ -43,6 +43,7 @@ function getDefaultNote() {
     return {
         type: 'note-txt',
         isPinned: false,
+        backgroundColor: 'yellow',
         info: {
             title: '',
             body: ''
@@ -50,25 +51,24 @@ function getDefaultNote() {
     }
 }
 
-function _createNote(title, body) {
+function _createNote(type, info) {
     return {
         id: utilService.makeId(),
-        type: 'note-txt',
+        type,
         isPinned: false,
-        info: {
-            title,
-            body
-        },
+        backgroundColor: 'gainsboro',
+        info,
     }
 }
+
 
 function _createNotes() {
     let notes = utilService.loadFromStorage(NOTES_KEY)
     if (!notes || !notes.length) {
         notes = [
-            _createNote('hello', 'Hello I\'m a Note'),
-            _createNote('hi', 'Note number 2!'),
-            _createNote('ho', 'What is this? Note number 3!'),
+            _createNote('note-txt', { title: 'hello', body: 'Hello I\'m a Note' }),
+            _createNote('note-txt', { title: 'hi', body: 'Note number 2!' }),
+            _createNote('note-img', { title: 'ho', url: 'https://techcrunch.com/wp-content/uploads/2021/07/GettyImages-1207206237.jpg?w=730&crop=1' }),
         ]
     }
     utilService.saveToStorage(NOTES_KEY, notes)
