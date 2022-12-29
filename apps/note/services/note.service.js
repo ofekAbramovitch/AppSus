@@ -41,11 +41,11 @@ function saveNote(note) {
 
 function getDefaultNote() {
     return {
-        title: '',
         type: 'note-txt',
         isPinned: false,
         info: {
-            txt: '',
+            title: '',
+            body: ''
         },
     }
 }

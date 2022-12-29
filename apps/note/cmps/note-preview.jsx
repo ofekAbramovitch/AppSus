@@ -1,44 +1,55 @@
+import { AddNote } from "./add-note.jsx"
+
 const { useState, useRef } = React
 
-export function NotePreview({ note }) {
+export function NotePreview({ note, setNotes }) {
 
-    const [isEditing, setIsEditing] = useState(false)
+    // function onChangeInfo(id, info) {
+    //     const notesToSave = note
+    //     notesToSave[id] = info
+    //     setNotes(notesToSave)
+    // }
 
-    function onChangeInfo(id, info) {
-        const notesToSave = note
-        notesToSave[id] = info
-        setNotes(notesToSave)
-    }
 
-    return <section className="note-preview" style={note.style} onClick={() => setIsEditing(true)}>
-        <DynamicCmp type={note.type} info={note.info}
+    return <section className="note-preview" style={note.style}>
+        <DynamicCmp note={note} setNotes={setNotes}
             onChangeInfo={info => onChangeInfo(note.id, info)} />
     </section>
 }
 
-function DynamicCmp({ type, info, onChangeInfo }) {
-    switch (type) {
+function DynamicCmp({note, onChangeInfo, setNotes }) {
+    switch (note.type) {
         case 'note-txt':
-            return <NoteTxt info={info} onChangeInfo={onChangeInfo} />
+            return <NoteTxt note={note} onChangeInfo={onChangeInfo} setNotes={setNotes} />
         case 'note-img':
-            return <NoteImg info={info} />
+            return <NoteImg note={note} />
         case 'note-video':
-            return <NoteVideo info={info} />
+            return <NoteVideo note={note} />
         case 'note-todos':
-            return <NoteTodos info={info} />
+            return <NoteTodos note={note} />
     }
 }
 
-function NoteTxt({ info, onChangeInfo }) {
-    return <label className="txt-container">
-        <div onChange={ev => { onChangeInfo(ev.target.value) }}>
-            {console.log(info)}
-            <h5>{info.title}</h5>
-            <p>{info.body}</p>
-        </div>
-    </label>
-}
 
+function NoteTxt({ note, setNotes }) {
+    const [isEditing, setIsEditing] = useState(false)
+
+    return (<section className="txt-container">
+        <article onClick={() => setIsEditing(true)}>
+            <h5>{note.info.title}</h5>
+            <p>{note.info.body}</p>
+        </article>
+        {isEditing && (
+            <div>
+                <div className="edit-note-modal">
+                    <AddNote noteId={note.id} isEditing={true} setIsEditing={setIsEditing} setNotes={setNotes} />
+                </div>
+            </div>
+        )}
+    </section>
+
+    )
+}
 function NoteImg({ info }) {
     return <div>NoteImg</div>
 }

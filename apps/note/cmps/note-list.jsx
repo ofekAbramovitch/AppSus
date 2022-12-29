@@ -14,11 +14,8 @@ export function NoteList({ notes, setNotes }) {
         <ul className="note-list clean-list layout">
             {
                 notes.map(note => <li key={note.id}>
-                    <NotePreview note={note} onRemove={onRemove} />
+                    <NotePreview note={note} onRemove={onRemove} setNotes={setNotes} />
                     <div>
-                        <button className='btn btn-rnd-s'>
-                            <i className='fa-solid fa-pencil'></i>
-                        </button>
                         <button className='btn btn-rnd-s'>
                             <i className='fa-solid fa-palette'></i>
                         </button>
