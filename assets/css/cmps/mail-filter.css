@@ -11,7 +11,7 @@
     background-color: var(--mail-bg-color);
 }
 
-.mail-filter button{
+.mail-filter button {
     font-size: 20px;
     background-color: var(--mail-bg-color);
     border: 0;

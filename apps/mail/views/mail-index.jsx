@@ -11,6 +11,7 @@ import { MailCompose } from "../cmps/mail-compose.jsx"
 export function MailIndex() {
     const [mails, setMails] = useState([])
     const [isSendEmail, setIsSendEmail] = useState(false)
+    const [status, setStatus] = useState((window.location.href).split('/').pop())
 
     useEffect(() => {
         loadMails()
@@ -33,8 +34,10 @@ export function MailIndex() {
         mailService.query(txt).then(setMails)
     }
 
+
     if(!mails.length) return <div>loading...</div>
     return <section className="mail-app">
+        {console.log('status:', status)}
         <MailHeader onSetFilter={ onSetFilter }/>
         <div className="mail-content layout">
             <div>
@@ -43,7 +46,7 @@ export function MailIndex() {
             </div>
             <div className="folder-list-container">
                 <button onClick={() => {setIsSendEmail(true)}}><i class="fa-solid fa-plus"></i> Compose</button>
-                <MailFolderList />
+                <MailFolderList setStatus={() => setStatus((window.location.href).split('/').pop())}/>
             </div>
         </div>
         

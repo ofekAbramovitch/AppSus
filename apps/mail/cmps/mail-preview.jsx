@@ -5,11 +5,14 @@ export function MailPreview({mail}) {
         return new Date(date).toISOString().slice(0, 10)
     }
     return <article className="mail-preview">
-        <div>{mail.name}</div>
-        <div>
-            <h3><LongTxt txt={mail.subject} length={20} isUseButton={false} /></h3>
+        <div className="start-name-container">
+            <div>{mail.isStared ? <i className="fas fa-solid fa-star checked"></i> : <i className="far fa-star"></i>}</div>
+            <div>{mail.name}</div>
+        </div>
+        <div className="mail-preview-content">
+            <h3><LongTxt txt={mail.subject} length={10} isUseButton={false} /></h3>
             <div>-</div>
-            <div><LongTxt txt={mail.body} length={40} isUseButton={false} /></div>
+            <div><LongTxt txt={mail.body} length={20} isUseButton={false} /></div>
         </div>
         <div className="date">{getDate(mail.sentAt)}</div>
     </article>
