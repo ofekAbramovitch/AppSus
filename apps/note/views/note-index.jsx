@@ -2,6 +2,7 @@ const { useState, useEffect } = React
 
 import { NoteList } from '../cmps/note-list.jsx'
 import { AddNote } from '../cmps/add-note.jsx'
+import { AppHeader } from '../../../cmps/app-header.jsx'
 
 import { noteService } from '../services/note.service.js'
 
@@ -20,6 +21,7 @@ export function NoteIndex() {
     if (!notes || !notes.length) return <div>Loading...</div>
     return (
         <div className='note-index'>
+            <AppHeader />
             <AddNote setNotes={setNotes} />
             <NoteList notes={notes} setNotes={loadNotes} />
         </div>

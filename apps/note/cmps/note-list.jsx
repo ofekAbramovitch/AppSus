@@ -6,15 +6,16 @@ export function NoteList({ notes, setNotes }) {
     if (!notes || !notes.length) return <div>Loading...</div>
 
     function onRemove(noteId) {
-         noteService.remove(noteId)
+        noteService.remove(noteId)
             .then(() => setNotes())
     }
 
     return (
-        <ul className="note-list clean-list">
+        <ul className="note-list clean-list layout">
             {
                 notes.map(note => <li key={note.id}>
-                    <NotePreview note={note} />
+                    <NotePreview note={note} removeNote={onRemove}
+                        setNotes={setNotes} />
                     <div>
                         <button className='btn btn-rnd-s'>
                             <i className='fa-solid fa-pencil'></i>

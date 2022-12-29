@@ -2,22 +2,22 @@ const { useState, useEffect, useRef } = React
 
 import { noteService } from '../services/note.service.js'
 
-export function AddNote({ setNotes }) {
-    const [addNodeParams, setAddNodeParams] = useState(noteService.getDefaultNote())
-    const [isWriting, setIsWriting] = useState(false)
+export function AddNote({ note, setNotes, isEditing, setIsEditing }) {
+    const [addParams, setaddParams] = useState(noteService.getDefaultNote())
+    const [isWriting, setIsWriting] = useState(false || isEditing)
     const inputRef = useRef(null)
     useOutsideEvent(inputRef)
-    
+
     function handleChange({ target }) {
         let { value, name: field, type } = target
         value = type === 'number' ? +value : value
         if (target.id === 'txt') {
-            return setAddNodeParams(prev => {
+            return setaddParams(prev => {
                 prev.info.txt = value
                 return { ...prev }
             })
         }
-        setAddNodeParams(prev => {
+        setaddParams(prev => {
             return { ...prev, [field]: value }
         })
     }
@@ -27,8 +27,8 @@ export function AddNote({ setNotes }) {
 
             function handleOutsideEvent(event) {
                 if (ref.current && !ref.current.contains(event.target)) {
-                    setIsWriting(false)
-                    setAddNodeParams(noteService.getDefaultNote())
+                    clear()
+                    if (isEditing) setIsEditing(false)
                 }
             }
             document.addEventListener('mousedown', handleOutsideEvent)
@@ -39,12 +39,20 @@ export function AddNote({ setNotes }) {
     }
 
     function addNote() {
-        setIsWriting(false)
-        setAddNodeParams(noteService.getDefaultNote())
-
-        noteService.saveNote(addNodeParams).then(newNote => {
-            setNotes(prev => [newNote, ...prev])
+        clear()
+        if (isEditing) setIsEditing(false)
+        noteService.saveNote(addParams).then(newNote => {
+            if (!isEditing) return setNotes(prev => [newNote, ...prev])
+            setNotes(prevNotes => {
+                prevNotes[prevNotes.findIndex(note => note.id === newNote.id)] = newNote
+                return [...prevNotes]
+            })
         })
+    }
+
+    function clear() {
+        setIsWriting(false)
+        setaddParams(noteService.getDefaultNote())
     }
 
     return (
@@ -55,7 +63,7 @@ export function AddNote({ setNotes }) {
                     placeholder='Title'
                     id='title'
                     name='title'
-                    value={addNodeParams.txt}
+                    value={addParams.title}
                     onChange={handleChange}
                 />
             )}
@@ -65,7 +73,7 @@ export function AddNote({ setNotes }) {
                     placeholder='Take a note...'
                     id='txt'
                     name='txt'
-                    value={addNodeParams.txt}
+                    value={addParams.info.txt}
                     onChange={handleChange}
                     onClick={() => setIsWriting(true)}
                 />
@@ -78,7 +86,7 @@ export function AddNote({ setNotes }) {
                             <i className='fa-solid fa-palette'></i>
                         </button>
                         <button className='btn btn-rnd-s'>
-                            <i className='fa-solid fa-location-dot'></i>
+                            <i className='fa-solid fa-image'></i>
                         </button>
                     </div>
                 )}
@@ -97,7 +105,7 @@ export function AddNote({ setNotes }) {
                         </button>
                     </div>
                     <button className='btn add-btn btn-primary' onClick={addNote}>
-                        Add
+                        Save
                     </button>
                 </div>
             )}

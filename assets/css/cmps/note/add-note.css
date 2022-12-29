@@ -15,15 +15,15 @@
 .add-note input:hover {
     outline: none;
     color: #fff;
-    background-color: #171c26;
+    background-color: #fff;
 }
 
 .add-note input:focus {
     color: #fff;
     border-radius: 8px;
     outline: none;
-    color: #fff;
-    background-color: #171c26;
+    color: black;
+    background-color: #fff;
 }
 
 .add-note button {

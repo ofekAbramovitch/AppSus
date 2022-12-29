@@ -65,7 +65,7 @@ function _createNotes() {
     let notes = utilService.loadFromStorage(NOTES_KEY)
     if (!notes || !notes.length) {
         notes = [
-            _createNote('Note number 1...'),
+            _createNote('Hello I\'m a Note'),
             _createNote('Note number 2!'),
             _createNote('What is this? Note number 3!'),
         ]

@@ -1,6 +1,33 @@
+const { useState, useRef } = React
 
+export function NotePreview({ note, setNotes, removeNote }) {
+    const [isEditing, setIsEditing] = useState(false)
+    const [isInPalette, setIsInPalette] = useState(false)
+    const noteRef = useRef(null)
+   
+    function setColor(ev, color) {
+        ev.stopPropagation()
+        note.style = { ...note.style }
+        note.style.backgroundColor = color
+        noteService.saveNote(note).then(newNote => {
+            setNotes(prevNotes => {
+                prevNotes[prevNotes.findIndex(note => note.id === newNote.id)] = newNote
+                return [...prevNotes]
+            })
+        })
+    }
 
-export function NotePreview({ note }) {
+    function onRemoveNote(ev) {
+        ev.stopPropagation()
+        removeNote(note.id)
+    }
+
+    function onHover(ev) {
+        noteRef.current.classList.add('z-2')
+    }
+    function onHoverLeave(ev) {
+        noteRef.current.classList.remove('z-2')
+    }
 
     return <section className="note-preview">
         <DynamicCmp type={note.type} info={note.info}
