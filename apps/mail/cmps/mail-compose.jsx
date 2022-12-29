@@ -12,7 +12,6 @@ export function MailCompose({onSaveMail}) {
 
     return <section className="mail-compose">
         <div className="title-container"><h3>New massage</h3></div>
-            <div>
                 <input type="text"
                 id="to"
                 name="to"
@@ -20,8 +19,6 @@ export function MailCompose({onSaveMail}) {
                 value={mail.to}
                 onChange={handleChange}
                 />
-            </div>
-            <div>
                 <input type="text"
                 id="subject"
                 name="subject"
@@ -29,15 +26,12 @@ export function MailCompose({onSaveMail}) {
                 value={mail.subject}
                 onChange={handleChange}
                 />
-            </div>
-            <div>
                 <textarea type="text"
                 id="body"
                 name="body"
                 value={mail.body}
                 onChange={handleChange}
                 />
-            </div>
             <div className="button-container flex space-between align-center">
                 <button onClick={() => onSaveMail(mail)}>Send</button>
                 <i className="fa-solid fa-trash"></i>

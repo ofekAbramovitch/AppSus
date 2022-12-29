@@ -6,7 +6,7 @@
 .mail-content {
     display: grid;
     padding-top: 20px;
-    grid-template-columns: 2fr, 4fr;
+    grid-template-columns: 2fr 4fr;
     grid-template-areas:
     "folder list";
 }
@@ -17,6 +17,9 @@
 
 .mail-app .mail-list {
     grid-area: list;
+    padding: 40px 20px;
+    border-radius: 10px;
+    background-color: white;
 }
 
 .folder-list-container button{
@@ -29,6 +32,7 @@
 .folder-list-container{
     font-size: large;
 }
+
 
 
 

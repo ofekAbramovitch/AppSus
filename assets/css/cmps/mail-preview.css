@@ -1,12 +1,33 @@
 .mail-preview {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 10px;
     border-bottom: 1px solid rgb(0,0,0,0.1);
 
 }
 
-.mail-preview div{
+.mail-preview .mail-preview-content{
     display: flex;
     gap: 5px;
 } 
+
+.mail-preview i{
+   width: 5%;
+} 
+
+.checked {
+    color: gold;
+}
+
+/* .mail-preview-content {
+    width: 300px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+} */
+
+.start-name-container {
+    display: flex;
+    gap: 20px;
+}

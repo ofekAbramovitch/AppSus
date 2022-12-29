@@ -1,7 +1,7 @@
 const { NavLink } = ReactRouterDOM
 
-export function MailFolderList() {
-    return <section className="mail-folder-list">
+export function MailFolderList({ setStatus }) {
+    return <section onClick={() => setStatus()} className="mail-folder-list">
        <nav>
             <NavLink to="/mail/inbox"><i className="fa-solid fa-inbox"></i> inBox</NavLink>
             <NavLink to="/mail/starred"><i className="fa-solid fa-star"></i> Stared</NavLink>
