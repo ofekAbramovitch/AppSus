@@ -1,5 +1,5 @@
 const { useState, useEffect } = React
-const { Link } = ReactRouterDOM
+const { useParams } = ReactRouterDOM
 
 import { mailService } from "../services/mail.service.js"
 
@@ -7,11 +7,13 @@ import { MailList } from "../cmps/mail-list.jsx"
 import { MailHeader } from "../cmps/mail-header.jsx"
 import { MailFolderList} from "../cmps/mail-folder-list.jsx"
 import { MailCompose } from "../cmps/mail-compose.jsx"
+import { MailDetails } from "../cmps/mail-details.jsx"
 
 export function MailIndex() {
     const [mails, setMails] = useState(null)
     const [isSendEmail, setIsSendEmail] = useState(false)
     const [filter, setFilter] = useState(mailService.createFilter())
+    const params = useParams()
 
     useEffect(() => {
         loadMails()
@@ -44,9 +46,10 @@ export function MailIndex() {
     return <section className="mail-app">
         <MailHeader onSetFilter={ onSetFilterTxt }/>
         <div className="mail-content layout">
-            <div>
-                {!isSendEmail && <MailList mails={mails}/>}
-                {isSendEmail && <MailCompose  onSaveMail={onSaveMail}/>}
+          <div>
+                {!params.mailId && !isSendEmail && <MailList mails={mails}/>}
+                {!params.mailId && isSendEmail && <MailCompose  onSaveMail={onSaveMail} setIsSendEmail={setIsSendEmail}/>}
+                {params.mailId && <MailDetails />}
             </div>
             <div className="folder-list-container">
                 <button onClick={() => {setIsSendEmail(true)}}><i class="fa-solid fa-plus"></i> Compose</button>

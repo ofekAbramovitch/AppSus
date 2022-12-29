@@ -3,7 +3,7 @@ const { useState } = React
 
 
 export function MailFilter({ onSetFilter }) {
-    const[filter, setFilter] = useState({txt: '', isRead: null})
+    const[filter, setFilter] = useState({txt: '', isRead: ''})
 
     // function handleChange({ target }) {
     //     let { value } = target
@@ -34,7 +34,7 @@ export function MailFilter({ onSetFilter }) {
                 />
             </div>
             <select name="is-read" id="is-read" value={filter.isRead} onChange={handleChange}>
-                <option value={null}>All</option>
+                <option value={''}>All</option>
                 <option value={true}>Read</option>
                 <option value={false}>Not read</option>
             </select>

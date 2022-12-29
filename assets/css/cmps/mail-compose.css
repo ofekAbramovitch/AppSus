@@ -7,8 +7,11 @@
 }
 
 .mail-compose .title-container{
+    display: flex;
+    justify-content: space-between;
     background-color: var(--mail-color);
     color: var(--mail-list-bg-color);
+    padding: 20px;
     width: 100%;
 }
 
@@ -28,7 +31,6 @@
 
 .mail-compose h3{
     font-size: large;
-    padding: 20px;
 }
 
 .mail-compose .button-container button{
@@ -48,4 +50,12 @@
 
 .mail-compose .button-container i{
     font-size: 50px
+}
+
+.mail-compose .delete {
+    font-size: large;
+    width: 10px;
+    background-color: var(--mail-color);
+    color: var(--mail-list-bg-color);
+    border: 0;
 }
