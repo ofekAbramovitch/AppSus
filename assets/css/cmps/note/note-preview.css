@@ -7,7 +7,7 @@
 }
 
 .note-preview img {
-    padding: 20px;
+    padding: 0px;
 }
 
 .note-color {
@@ -15,7 +15,15 @@
     flex-direction: row;
 }
 
-.note-color div{
+.note-color div {
     width: 20px;
     height: 20px;
+}
+
+.todos-container ul {
+    padding-inline-start: 0px;
+}
+
+.todos-container li {
+    border: none;
 }
