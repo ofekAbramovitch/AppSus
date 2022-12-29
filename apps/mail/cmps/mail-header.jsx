@@ -2,7 +2,7 @@ const { Link, NavLink } = ReactRouterDOM
 
 import { MailFilter } from "./mail-filter.jsx"
 
-export function MailHeader() {
+export function MailHeader({ onSetFilter }) {
     return <header className="app-header">
         <div className="header-content layout">
            <Link to="/">
@@ -11,7 +11,7 @@ export function MailHeader() {
                     <h3>Appsus</h3>
                 </div>
             </Link>
-            <MailFilter />
+            <MailFilter onSetFilter={ onSetFilter }/>
             <nav>
                 <NavLink to="/">Home</NavLink>
                 <NavLink to="/about">About</NavLink>

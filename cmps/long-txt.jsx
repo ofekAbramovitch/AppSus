@@ -1,6 +1,6 @@
 const { useState } = React
 
-export function LongTxt({txt, length = 100, isUseButton}) {
+export function LongTxt({txt, length = 100, isUseButton = true}) {
     const [isRenderAll, setIsRenderAll] = useState(false)
 
     function renderTxt() {

@@ -6,7 +6,7 @@
 .mail-content {
     display: grid;
     padding-top: 20px;
-    grid-column: 2fr, 4fr;
+    grid-template-columns: 2fr, 4fr;
     grid-template-areas:
     "folder list";
 }
@@ -19,7 +19,7 @@
     grid-area: list;
 }
 
-.mail-app button{
+.folder-list-container button{
     background-color: #c2e7ff;
     border-radius: 10px;
     padding: 20px;

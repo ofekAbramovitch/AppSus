@@ -1,0 +1,51 @@
+
+.mail-compose {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.mail-compose .title-container{
+    background-color: var(--mail-color);
+    color: var(--mail-list-bg-color);
+    width: 100%;
+}
+
+.mail-compose input{
+    width: 100%;
+    height: 50px;
+    border: 0;
+    border-bottom: 1px solid rgb(0,0,0,0.1);
+}
+
+.mail-compose textarea{
+    width: 100%;
+    height: 400px;
+    resize: none;
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
+
+.mail-compose h3{
+    font-size: large;
+    padding: 20px;
+}
+
+.mail-compose .button-container button{
+    background-color:rgb(37, 105, 231);
+    color: aliceblue;
+    font-size: larger;
+    padding: 10px;
+}
+
+.mail-compose .button-container{
+    background-color: white;
+    padding: 10px;
+    margin: 0;
+}
+
+.mail-compose .button-container i{
+    font-size: 50px
+}

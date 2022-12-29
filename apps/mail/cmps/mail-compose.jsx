@@ -1,37 +1,46 @@
 
+const { useState } = React
+import { mailService } from "../services/mail.service.js"
 
-export function MailCompose() {
+export function MailCompose({onSaveMail}) {
+    const [ mail, setMail ] = useState(mailService.createEmptyMail())
 
-    function onSubmit() {
-
+    function handleChange({ target }) {
+        let { value, name: field } = target
+        setMail((prevMail) => ({ ...prevMail, [field]: value }))
     }
 
     return <section className="mail-compose">
-        <h3>New massage</h3>
-        <form onSubmit={onSubmit}>
+        <div className="title-container"><h3>New massage</h3></div>
             <div>
                 <input type="text"
                 id="to"
+                name="to"
                 placeholder="To:"
-                // value={book.title}
-                // onChange={handleChange}
+                value={mail.to}
+                onChange={handleChange}
                 />
             </div>
             <div>
-                <textarea type="text"
-                id="subtitle"
-                placeholder="Subtitle"
-                // value={book.subtitle}
-                // onChange={handleChange}
+                <input type="text"
+                id="subject"
+                name="subject"
+                placeholder="Subject"
+                value={mail.subject}
+                onChange={handleChange}
                 />
             </div>
             <div>
                 <textarea type="text"
                 id="body"
-                // value={book.description}
-                // onChange={handleChange}
+                name="body"
+                value={mail.body}
+                onChange={handleChange}
                 />
             </div>
-        </form>
+            <div className="button-container flex space-between align-center">
+                <button onClick={() => onSaveMail(mail)}>Send</button>
+                <i className="fa-solid fa-trash"></i>
+            </div>
     </section>
 }
