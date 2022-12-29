@@ -30,12 +30,13 @@ export function MailIndex() {
         )
     }
 
-    function onSetFilterTxt(txt) {
-        setFilter((prevFilter) => ({ ...prevFilter, txt }))
+    function onSetFilterTxt(filter) {
+        setFilter((prevFilter) => ({ ...prevFilter, txt: filter.txt, isRead: filter.isRead  }))
     }
 
     function onSetFilterStatus(status) {
-        setFilter((prevFilter) => ({ ...prevFilter, status }))
+        if(status === 'starred')  setFilter((prevFilter) => ({ ...prevFilter, status: null, isStared: true }))
+        else setFilter((prevFilter) => ({ ...prevFilter, status, isStared: null }))
     }
 
 
