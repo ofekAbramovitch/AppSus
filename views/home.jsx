@@ -1,6 +1,6 @@
 const { Link } = ReactRouterDOM
 
-import { AppHeader } from "../cmps/app-header"
+import { AppHeader } from "../cmps/app-header.jsx"
 
 export function Home() {
 

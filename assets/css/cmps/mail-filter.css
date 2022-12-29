@@ -17,5 +17,12 @@
     border: 0;
 }
 
+.mail-filter #is-read {
+    background-color: var(--mail-bg-color);
+    border: 0;
+    border-left: 1px solid rgb(0,0,0,0.1);
+}
+
+
 
 

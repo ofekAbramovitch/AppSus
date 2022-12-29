@@ -2,7 +2,7 @@
 const { useState } = React
 import { mailService } from "../services/mail.service.js"
 
-export function MailCompose({onSaveMail}) {
+export function MailCompose({onSaveMail, setIsSendEmail}) {
     const [ mail, setMail ] = useState(mailService.createEmptyMail())
 
     function handleChange({ target }) {
@@ -11,7 +11,10 @@ export function MailCompose({onSaveMail}) {
     }
 
     return <section className="mail-compose">
-        <div className="title-container"><h3>New massage</h3></div>
+        <div className="title-container">
+            <h3>New massage</h3>
+            <button className="delete" onClick={() => setIsSendEmail(false)}>x</button>
+            </div>
                 <input type="text"
                 id="to"
                 name="to"

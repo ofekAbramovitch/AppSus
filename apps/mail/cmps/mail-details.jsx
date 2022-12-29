@@ -1,5 +1,28 @@
+const { useState, useEffect } = React
+
+const { useParams, useNavigate } = ReactRouterDOM
+
+import { mailService } from "../services/mail.service.js"
 
 
 export function MailDetails() {
-    return
+    let [mail, setMail] = useState(null)
+    const params = useParams()
+    const navigate = useNavigate()
+
+    useEffect(()=>{
+        if(params.mailId) loadMail()
+    },[])
+
+    function loadMail() {
+        mailService.get(params.mailId).then(setMail)
+    }
+
+    if(!mail) return <div>loading...</div> 
+    return <section className="mail-details">
+        <button onClick={() => navigate(-1)}>X</button>
+        <h2>{mail.subject}</h2>
+        <div>from: {mail.from}</div>
+        <div>{mail.body}</div>
+    </section>
 }
