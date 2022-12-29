@@ -3,7 +3,7 @@ import { MailPreview } from './mail-preview.jsx'
 
 export function MailList({mails}) {
 
-    if(!mails.length) return <div>loading...</div>
+    if(!mails.length) return <div>dont have mail</div>
     return <ul className="mail-list clean-list">
     {
         mails.map(mail => <li key={mail.id}>

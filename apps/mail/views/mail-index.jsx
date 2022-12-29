@@ -9,16 +9,16 @@ import { MailFolderList} from "../cmps/mail-folder-list.jsx"
 import { MailCompose } from "../cmps/mail-compose.jsx"
 
 export function MailIndex() {
-    const [mails, setMails] = useState([])
+    const [mails, setMails] = useState(null)
     const [isSendEmail, setIsSendEmail] = useState(false)
-    const [status, setStatus] = useState((window.location.href).split('/').pop())
+    const [filter, setFilter] = useState(mailService.createFilter())
 
     useEffect(() => {
         loadMails()
-    }, [])
+    }, [filter])
 
     function loadMails() {
-        mailService.query().then(setMails)
+        mailService.query(filter).then(setMails)
     }
 
     function onSaveMail(mail) {
@@ -30,15 +30,18 @@ export function MailIndex() {
         )
     }
 
-    function onSetFilter(txt) {
-        mailService.query(txt).then(setMails)
+    function onSetFilterTxt(txt) {
+        setFilter((prevFilter) => ({ ...prevFilter, txt }))
+    }
+
+    function onSetFilterStatus(status) {
+        setFilter((prevFilter) => ({ ...prevFilter, status }))
     }
 
 
-    if(!mails.length) return <div>loading...</div>
+    if(!mails) return <div>loading...</div>
     return <section className="mail-app">
-        {console.log('status:', status)}
-        <MailHeader onSetFilter={ onSetFilter }/>
+        <MailHeader onSetFilter={ onSetFilterTxt }/>
         <div className="mail-content layout">
             <div>
                 {!isSendEmail && <MailList mails={mails}/>}
@@ -46,7 +49,7 @@ export function MailIndex() {
             </div>
             <div className="folder-list-container">
                 <button onClick={() => {setIsSendEmail(true)}}><i class="fa-solid fa-plus"></i> Compose</button>
-                <MailFolderList setStatus={() => setStatus((window.location.href).split('/').pop())}/>
+                <MailFolderList setStatus={() => onSetFilterStatus((window.location.href).split('/').pop())}/>
             </div>
         </div>
         
