@@ -47,6 +47,10 @@ export function MailIndex() {
     })
     }
 
+    function checkOnSentMail() {
+        return !params.mailId && isSendEmail || (params.title && params.body)
+    }
+
     function onMoveToTrash(mail) {
         mail.status = 'trash'
         mail.sentAt = Date.now()
@@ -77,7 +81,7 @@ export function MailIndex() {
             </div>
             <div>
                     {!params.mailId && !isSendEmail && <MailList mails={mails} loadMails={loadMails}/>}
-                    {!params.mailId && isSendEmail && <MailCompose  onSaveMail={onSaveMail} setIsSendEmail={setIsSendEmail} onMoveToTrash={onMoveToTrash}/>}
+                    {checkOnSentMail() && <MailCompose  onSaveMail={onSaveMail} setIsSendEmail={setIsSendEmail} onMoveToTrash={onMoveToTrash} params={params}/>}
                     {params.mailId && <MailDetails />}
             </div>
         </div>
