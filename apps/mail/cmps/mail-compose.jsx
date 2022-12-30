@@ -1,12 +1,16 @@
 
 const { useState, useEffect, useRef } = React
+const {  useNavigate } = ReactRouterDOM
 
 import { mailService } from "../services/mail.service.js"
 
 export function MailCompose({onSaveMail, setIsSendEmail, onMoveToTrash, params}) {
     const [ mail, setMail ] = useState(mailService.createEmptyMail())
     const interval = useRef(null)
+    const navigate = useNavigate()
+
     useEffect(() => {
+        setIsSendEmail(true)
         if(params.noteTitle && params.noteBody) {
             mail.body = params.noteBody
             mail.subject = params.noteTitle
@@ -32,11 +36,16 @@ export function MailCompose({onSaveMail, setIsSendEmail, onMoveToTrash, params})
         console.log('maildraft:', mail)
         mailService.save(mail);
     }
+
+    function close() {
+        setIsSendEmail(false)
+        navigate('/mail/inbox')
+    }
     
     return <section className="mail-compose">
         <div className="title-container">
             <h3>New massage</h3>
-            <button className="delete" onClick={() => setIsSendEmail(false)}>x</button>
+            <button className="delete" onClick={close}>x</button>
             </div>
                 <input type="text"
                 id="to"

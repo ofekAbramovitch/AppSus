@@ -1,5 +1,5 @@
 const { useState, useEffect } = React
-const { useParams } = ReactRouterDOM
+const { useParams, useNavigate } = ReactRouterDOM
 
 import { mailService } from "../services/mail.service.js"
 
@@ -14,8 +14,8 @@ export function MailIndex() {
     const [isSendEmail, setIsSendEmail] = useState(false)
     const [filter, setFilter] = useState(mailService.createFilter())
     const [screenWidth, setScreenWidth] = useState(window.innerWidth)
+    const navigate = useNavigate()
     const params = useParams()
-    console.log('params:', params)
 
     useEffect(() => {
         window.addEventListener('resize', () => setScreenWidth(getScreenWidth()))
@@ -45,6 +45,7 @@ export function MailIndex() {
         mailService.save(mail).then(() =>{
             setMails(mails)
             setIsSendEmail(false)
+            navigate('/mail/inbox')
     })
     }
 
@@ -63,6 +64,7 @@ export function MailIndex() {
         mailService.save(mail).then(() =>{
             setMails(mails)
             setIsSendEmail(false)
+            // navigate('/mail/trash')
     })
     }
 
