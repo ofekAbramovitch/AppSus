@@ -1,6 +1,7 @@
 .mail-preview {
     display: flex;
     justify-content: space-between;
+    gap: 50px;
     align-items: center;
     padding: 10px;
     border-bottom: 1px solid rgb(0,0,0,0.1);
@@ -9,7 +10,10 @@
 
 .mail-preview .mail-preview-content{
     display: flex;
+    flex-direction: column;
     gap: 5px;
+    width: 150px;
+    white-space: nowrap
 } 
 
 .mail-preview i{
@@ -20,14 +24,64 @@
     color: gold;
 }
 
-/* .mail-preview-content {
-    width: 300px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-} */
-
-.start-name-container {
-    display: flex;
-    gap: 20px;
+.mail-preview-content .mail-body{
+    overflow:hidden; 
+    text-overflow:ellipsis;  
 }
+
+.stared-name-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 50px;
+}
+
+.stared-name-container div{
+    overflow:hidden; 
+    text-overflow:ellipsis; 
+}
+
+.mail-preview .fa-trash {
+    font-size: 30px;
+    cursor: pointer;
+    width: 50px;
+}
+
+.date {
+    width: 50px;
+}
+
+
+@media (min-width: 650px) {
+
+  }
+  
+  @media (min-width: 850px) {
+    .stared-name-container {
+        width: 150px;
+        flex-direction: row;
+    }
+    .mail-preview .mail-preview-content{
+        width: 300px;
+        flex-direction: row;
+    } 
+    .date {
+        width: 50px;
+    }
+    .mail-preview .fa-trash {
+        width: 50px;
+    }
+  }
+  
+  @media (min-width: 1200px) {
+    mail-preview .mail-preview-content{
+        width: 500px;
+    } 
+    .date {
+        width: 100px;
+    }
+    .mail-preview .fa-trash {
+        width: 100px;
+    }
+  }
+

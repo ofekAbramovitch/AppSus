@@ -1,6 +1,6 @@
 
 .mail-compose {
-    width: 100%;
+    width: 600px;
     display: flex;
     flex-direction: column;
     gap: 0;
@@ -59,3 +59,23 @@
     color: var(--mail-list-bg-color);
     border: 0;
 }
+
+
+@media (min-width: 650px) {
+    .mail-compose {
+        width: 300px;
+    }
+}
+
+@media (min-width: 850px) {
+  .mail-compose {
+    width: 500px;
+}
+}
+
+@media (min-width: 1200px) {
+    .mail-compose {
+        width: 800px;
+    }
+}
+

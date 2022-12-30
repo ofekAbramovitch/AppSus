@@ -19,6 +19,7 @@ export function MailDetails() {
     }
 
     if(!mail) return <div>loading...</div> 
+    {console.log('mail:', mail)}
     return <section className="mail-details">
         <button onClick={() => navigate(-1)}>X</button>
         <h2>{mail.subject}</h2>

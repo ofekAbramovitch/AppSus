@@ -1,15 +1,35 @@
 
-const { useState } = React
+const { useState, useEffect, useRef } = React
+
 import { mailService } from "../services/mail.service.js"
 
-export function MailCompose({onSaveMail, setIsSendEmail}) {
+export function MailCompose({onSaveMail, setIsSendEmail, onMoveToTrash}) {
     const [ mail, setMail ] = useState(mailService.createEmptyMail())
+    const interval = useRef(null)
+
+    useEffect(() => {
+        mailService.save(mail).then((mail) => {
+            setMail(mail)
+        })
+    }, [])
+
+    useEffect(() => {
+        interval.current = setInterval(onMoveToDraft, 5000)
+        
+        return () => clearInterval(interval.current)
+    })
 
     function handleChange({ target }) {
         let { value, name: field } = target
         setMail((prevMail) => ({ ...prevMail, [field]: value }))
     }
 
+     function onMoveToDraft() {
+        mail.sentAt = Date.now()
+        console.log('maildraft:', mail)
+        mailService.save(mail);
+    }
+    
     return <section className="mail-compose">
         <div className="title-container">
             <h3>New massage</h3>
@@ -37,7 +57,7 @@ export function MailCompose({onSaveMail, setIsSendEmail}) {
                 />
             <div className="button-container flex space-between align-center">
                 <button onClick={() => onSaveMail(mail)}>Send</button>
-                <i className="fa-solid fa-trash"></i>
+                <i onClick={() => onMoveToTrash(mail)} className="fa-solid fa-trash"></i>
             </div>
     </section>
 }
