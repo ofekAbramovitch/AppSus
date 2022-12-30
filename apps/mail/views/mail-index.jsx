@@ -49,7 +49,7 @@ export function MailIndex() {
     }
 
     function checkOnSentMail() {
-        return !params.mailId && isSendEmail || (params.title && params.body)
+        return !params.mailId && isSendEmail || (params.noteTitle && params.noteBody)
     }
 
     function onMoveToTrash(mail) {
