@@ -3,24 +3,30 @@ import { noteService } from "../services/note.service.js"
 import { NoteColor } from "./note-color.jsx"
 
 const { useState } = React
-const { useNavigate} = ReactRouterDOM
+const { useNavigate } = ReactRouterDOM
 
 export function NotePreview({ note, setNotes }) {
-   
+    const navigate = useNavigate()
+
     function onRemove(noteId) {
         noteService.remove(noteId)
             .then(() => setNotes())
     }
 
+    function onSendMail(note) {
+        console.log(note)
+        navigate(`/mail/inbox/${note.info.title}/${note.info.body}`)
+    }
+
     return <section className="note-preview" >
-        <DynamicCmp note={note} setNotes={setNotes} onRemove={onRemove} />
+        <DynamicCmp note={note} setNotes={setNotes} onRemove={onRemove} onSendMail={onSendMail}/>
     </section>
 }
 
-function DynamicCmp({ note, onChangeInfo, setNotes, onRemove = { onRemove } }) {
+function DynamicCmp({ note, setNotes, onRemove, onSendMail }) {
     switch (note.type) {
         case 'note-txt':
-            return <NoteTxt note={note} onChangeInfo={onChangeInfo} setNotes={setNotes} onRemove={onRemove} />
+            return <NoteTxt note={note} setNotes={setNotes} onRemove={onRemove} onSendMail={onSendMail} />
         case 'note-img':
             return <NoteImg note={note} setNotes={setNotes} onRemove={onRemove} />
         case 'note-video':
@@ -30,7 +36,7 @@ function DynamicCmp({ note, onChangeInfo, setNotes, onRemove = { onRemove } }) {
     }
 }
 
-function NoteTxt({ note, setNotes, onRemove }) {
+function NoteTxt({ note, setNotes, onRemove, onSendMail }) {
     const [data, setData] = useState(note.info)
     const [isColor, setIsColor] = useState(false)
     return <section className="txt-container">
@@ -48,7 +54,7 @@ function NoteTxt({ note, setNotes, onRemove }) {
         </article>}
         <button className='btn btn-rnd-s' onClick={() => setIsColor(!isColor)}>
             <i className='fa-solid fa-palette'></i>
-        {isColor && <NoteColor noteId={note.id} setNotes={setNotes} />}
+            {isColor && <NoteColor noteId={note.id} setNotes={setNotes} />}
         </button>
         <button className='btn btn-rnd-s' onClick={() => onCopy(note.id, setNotes)}>
             <i class="fa-solid fa-clone"></i>
@@ -76,7 +82,7 @@ function NoteImg({ note, setNotes, onRemove }) {
         </article>}
         <button className='btn btn-rnd-s' onClick={() => setIsColor(!isColor)}>
             <i className='fa-solid fa-palette'></i>
-        {isColor && <NoteColor noteId={note.id} setNotes={setNotes} />}
+            {isColor && <NoteColor noteId={note.id} setNotes={setNotes} />}
         </button>
         <button className='btn btn-rnd-s' onClick={() => onCopy(note.id, setNotes)}>
             <i class="fa-solid fa-clone"></i>
@@ -112,7 +118,7 @@ function NoteVideo({ note, setNotes, onRemove }) {
         </article>}
         <button className='btn btn-rnd-s' onClick={() => setIsColor(!isColor)}>
             <i className='fa-solid fa-palette'></i>
-        {isColor && <NoteColor noteId={note.id} setNotes={setNotes} />}
+            {isColor && <NoteColor noteId={note.id} setNotes={setNotes} />}
         </button>
         <button className='btn btn-rnd-s' onClick={() => onCopy(note.id, setNotes)}>
             <i class="fa-solid fa-clone"></i>
@@ -149,7 +155,7 @@ function NoteTodos({ note, setNotes, onRemove }) {
         </article>}
         <button className='btn btn-rnd-s' onClick={() => setIsColor(!isColor)}>
             <i className='fa-solid fa-palette'></i>
-        {isColor && <NoteColor noteId={note.id} setNotes={setNotes} />}
+            {isColor && <NoteColor noteId={note.id} setNotes={setNotes} />}
         </button>
         <button className='btn btn-rnd-s' onClick={() => onCopy(note.id, setNotes)}>
             <i class="fa-solid fa-clone"></i>
@@ -185,11 +191,6 @@ function togglePin(note, setNotes) {
         .then(() => setNotes())
 }
 
-function onSendMail(note) {
-const navigate = useNavigate()
-console.log(note)
-navigate(`/mail/inbox/${note.info.title}/${note.info.body}`)
-}
 
 
 
