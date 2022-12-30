@@ -48,8 +48,12 @@ export function MailIndex() {
     })
     }
 
-    function checkOnSentMail() {
+    function isOnSentMail() {
         return !params.mailId && isSendEmail || (params.noteTitle && params.noteBody)
+    }
+
+    function isShowList() {
+        return !params.mailId && !isSendEmail && !(params.noteTitle && params.noteBody)
     }
 
     function onMoveToTrash(mail) {
@@ -81,8 +85,8 @@ export function MailIndex() {
                     <MailFolderList screenWidth={screenWidth} setStatus={() => onSetFilterStatus((window.location.href).split('/').pop())}/>
             </div>
             <div>
-                    {!params.mailId && !isSendEmail && <MailList mails={mails} loadMails={loadMails}/>}
-                    {checkOnSentMail() && <MailCompose  onSaveMail={onSaveMail} setIsSendEmail={setIsSendEmail} onMoveToTrash={onMoveToTrash} params={params}/>}
+                    {isShowList() && <MailList mails={mails} loadMails={loadMails}/>}
+                    {isOnSentMail() && <MailCompose  onSaveMail={onSaveMail} setIsSendEmail={setIsSendEmail} onMoveToTrash={onMoveToTrash} params={params}/>}
                     {params.mailId && <MailDetails />}
             </div>
         </div>

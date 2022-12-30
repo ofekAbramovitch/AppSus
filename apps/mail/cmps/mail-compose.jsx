@@ -3,11 +3,14 @@ const { useState, useEffect, useRef } = React
 
 import { mailService } from "../services/mail.service.js"
 
-export function MailCompose({onSaveMail, setIsSendEmail, onMoveToTrash, param}) {
+export function MailCompose({onSaveMail, setIsSendEmail, onMoveToTrash, params}) {
     const [ mail, setMail ] = useState(mailService.createEmptyMail())
     const interval = useRef(null)
-    console.log('param:', param)
     useEffect(() => {
+        if(params.noteTitle && params.noteBody) {
+            mail.body = params.noteBody
+            mail.subject = params.noteTitle
+        }
         mailService.save(mail).then((mail) => {
             setMail(mail)
         })
