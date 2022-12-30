@@ -46,21 +46,31 @@ export function MailPreview({mail, loadMails}) {
         then(() => loadMails())
     }
 
+    function onMoveToDetails() {
+        mail.isRead = true
+        mailService.save(mail).then(() => {
+            console.log('mail:', mail)
+            navigate(`/mail/${mail.id}`)
+            loadMails()
+        })
+        
+    }
+
     console.log('() => setScreenWidth(screen.width):', screen.width)
 
-    return <article className="mail-preview" onMouseOver={() => setIsMouseOver(true)} onMouseOut={() => setIsMouseOver(false)}>
+    return <article className={`mail-preview  + ${mail.isRead && ' read'}` } onMouseOver={() => setIsMouseOver(true)} onMouseOut={() => setIsMouseOver(false)}>
         <div className="stared-name-container" onClick={onToggleStared}>
             {isMouseOver && screenWidth <= 650 && <i onClick={() => onMoveToTrash()} className="fa-solid fa-trash"></i>}
-            {!isMouseOver && screenWidth <= 650 && <div>
+            {!isMouseOver && screenWidth <= 650 && <div className="date-stared">
                 <div className="date">{getDate(mail.sentAt)}</div>
                 {getStared()}
             </div>}
             {screenWidth > 650 && getStared()}
             {screenWidth >= 850 && <div>{mail.name}</div>}
         </div>
-        <div className="mail-preview-content" onClick={() => navigate(`/mail/${mail.id}`)}>
+        <div className="mail-preview-content" onClick={onMoveToDetails}>
             {screenWidth < 850 && <div>{mail.name}</div>}
-            <h3 className="mail-subject"><LongTxt txt={mail.subject} length={10} isUseButton={false} /></h3>
+            <h3 className="mail-subject"><LongTxt txt={mail.subject} length={5} isUseButton={false} /></h3>
             {screenWidth >= 850 && <div>-</div>}
             <div className="mail-body">{mail.body}</div>
         </div>

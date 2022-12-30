@@ -16,6 +16,12 @@
     white-space: nowrap
 } 
 
+.mail-preview .date-stared {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
 .mail-preview i{
    width: 5%;
 } 
@@ -42,13 +48,17 @@
 }
 
 .mail-preview .fa-trash {
-    font-size: 30px;
+    font-size: 20px;
     cursor: pointer;
     width: 50px;
 }
 
 .date {
     width: 50px;
+}
+
+.read {
+    background-color: var( --mail-bg-color);
 }
 
 

@@ -42,7 +42,7 @@ function save(mail) {
 }
 
 function filterMail(filter, mails) {
-    console.log(1);
+    console.log('filter', filter);
     if (filter.txt) {
         const regex = new RegExp(filter.txt, 'i')
         mails = mails.filter(mail => regex.test(mail.subject) || regex.test(mail.name) || regex.test(mail.body))
@@ -51,7 +51,10 @@ function filterMail(filter, mails) {
         console.log('filter.status:', filter.status)
         console.log('mail.status:', mail.status)
         return filter.status === mail.status})
-    if(filter.isRead)  mails = mails.filter(mail => filter.isRead === mail.isRead)
+    if(filter.isRead !== '')  {
+        filter.isRead = filter.isRead === 'true' ? true : false
+        mails = mails.filter(mail => filter.isRead === mail.isRead)
+    }
     if(filter.isStared) mails = mails.filter(mail => filter.isStared === mail.isStared)
     return mails
 }

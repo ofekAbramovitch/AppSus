@@ -1,14 +1,7 @@
 const { useState } = React
 
-
-
 export function MailFilter({ onSetFilter }) {
     const[filter, setFilter] = useState({txt: '', isRead: ''})
-
-    // function handleChange({ target }) {
-    //     let { value } = target
-    //     setTxt(value)
-    // }
 
     function handleChange({ target }) {
         let { value, name: field } = target
@@ -17,9 +10,9 @@ export function MailFilter({ onSetFilter }) {
 
     function onSubmit(ev) {
         ev.preventDefault()
+        console.log('filter:', filter)
         onSetFilter(filter)
     }
-
 
     return <section className="mail-filter">
         <form onSubmit={onSubmit}>
@@ -33,7 +26,7 @@ export function MailFilter({ onSetFilter }) {
                 onChange={handleChange}
                 />
             </div>
-            <select name="is-read" id="is-read" value={filter.isRead} onChange={handleChange}>
+            <select name="isRead" id="is-read" value={filter.isRead} onChange={handleChange}>
                 <option value={''}>All</option>
                 <option value={true}>Read</option>
                 <option value={false}>Not read</option>
