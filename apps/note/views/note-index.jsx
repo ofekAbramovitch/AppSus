@@ -19,13 +19,9 @@ export function NoteIndex() {
         noteService.query(filter).then(setNotes)
     }
 
-    function onSetFilterTxt(filter) {
-        setFilter((prevFilter) => ({ ...prevFilter, txt: filter.txt}))
-    }
-
     return (
         <div className='note-index'>
-            <NoteHeader onSetFilter={onSetFilterTxt} />
+            <NoteHeader onSetFilter={setFilter} />
             <AddNote setNotes={setNotes} />
             <NoteList notes={noteService.getPinnedNotes(true, notes)} setNotes={loadNotes} />
             <NoteList notes={noteService.getPinnedNotes(false, notes)} setNotes={loadNotes} />

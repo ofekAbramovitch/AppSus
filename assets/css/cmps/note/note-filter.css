@@ -1,0 +1,22 @@
+.note-filter form{
+    display: flex;
+    background-color: inherit;
+}
+
+.note-filter input{
+    border: 0;
+    width: 300px;
+    height: 5vh;
+    background-color: inherit;
+}
+
+.note-filter button {
+    font-size: 20px;
+    background-color: inherit;
+    border: 0;
+}
+
+
+
+
+

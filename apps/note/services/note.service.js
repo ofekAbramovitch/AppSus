@@ -16,8 +16,12 @@ const NOTES_KEY = 'notesDB'
 
 _createNotes()
 
-function query() {
-    return storageService.query(NOTES_KEY)
+function query(filter) {
+    return storageService.query(NOTES_KEY).then(notes => {
+        if (!filter) return notes
+        const regex = new RegExp(filter, 'i')
+        return notes.filter(note => regex.test(note.info.title))
+    })
 }
 function get(noteId) {
     return storageService.get(NOTES_KEY, noteId)
