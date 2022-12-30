@@ -2,7 +2,7 @@ const { useState, useEffect, useRef } = React
 
 import { noteService } from '../services/note.service.js'
 
-export function AddNote({ note, setNotes, isEditing, setIsEditing, noteId }) {
+export function AddNote({ backgroundColor = "white", setNotes, isEditing, setIsEditing, noteId }) {
     const [addParams, setaddParams] = useState(noteService.getDefaultNote())
     const [isWriting, setIsWriting] = useState(false || isEditing)
     const inputRef = useRef(null)
@@ -25,12 +25,12 @@ export function AddNote({ note, setNotes, isEditing, setIsEditing, noteId }) {
     function useOutsideEvent(ref) {
         useEffect(() => {
             if (noteId) onLoadNote(noteId)
-                function handleOutsideEvent(event) {
-                    if (ref.current && !ref.current.contains(event.target)) {
-                        clear()
-                        if (isEditing) setIsEditing(false)
-                    }
+            function handleOutsideEvent(event) {
+                if (ref.current && !ref.current.contains(event.target)) {
+                    clear()
+                    if (isEditing) setIsEditing(false)
                 }
+            }
             document.addEventListener('mousedown', handleOutsideEvent)
             return () => {
                 document.removeEventListener('mousedown', handleOutsideEvent)
@@ -58,26 +58,31 @@ export function AddNote({ note, setNotes, isEditing, setIsEditing, noteId }) {
     return (
         <div className='add-note' ref={inputRef}>
             {isWriting && (
-                <input
-                    type='title'
-                    placeholder='Title'
-                    id='title'
-                    name='title'
-                    value={addParams.info.title}
-                    onChange={handleChange}
-                />
-            )}
-            <div className='main-input'>
-                <input
-                    type='text'
-                    placeholder='Take a note...'
-                    id='body'
-                    name='body'
-                    value={addParams.info.body}
-                    onChange={handleChange}
-                    onClick={() => setIsWriting(true)}
-                />
-                {!isWriting && (
+                <section>
+                    <input
+                        type='title'
+                        style={{ backgroundColor: backgroundColor }}
+                        placeholder='Title'
+                        id='title'
+                        name='title'
+                        value={addParams.info.title}
+                        onChange={handleChange}
+                    />
+                </section>
+            )
+            }
+            <input
+                type='text'
+                style={{ backgroundColor: backgroundColor }}
+                placeholder='Take a note...'
+                id='body'
+                name='body'
+                value={addParams.info.body}
+                onChange={handleChange}
+                onClick={() => setIsWriting(true)}
+            />
+            {
+                !isWriting && (
                     <div className='inline-utils'>
                         <button className='btn btn-rnd-s'>
                             <i className='fa-solid fa-palette'></i>
@@ -86,23 +91,25 @@ export function AddNote({ note, setNotes, isEditing, setIsEditing, noteId }) {
                             <i className='fa-solid fa-image'></i>
                         </button>
                     </div>
-                )}
-            </div>
-            {isWriting && (
-                <div className='utils'>
-                    <div className='btns'>
-                        <button className='btn btn-rnd-s'>
-                            <i className='fa-solid fa-palette'></i>
-                        </button>
-                        <button className='btn btn-rnd-s'>
-                            <i className='fa-solid '></i>
+                )
+            }
+            {
+                isWriting && (
+                    <div className='utils'>
+                        <div className='btns'>
+                            <button className='btn btn-rnd-s'>
+                                <i className='fa-solid fa-palette'></i>
+                            </button>
+                            <button className='btn btn-rnd-s'>
+                                <i className='fa-solid fa-image'></i>
+                            </button>
+                        </div>
+                        <button className='btn add-btn btn-primary' onClick={addNote}>
+                            Save
                         </button>
                     </div>
-                    <button className='btn add-btn btn-primary' onClick={addNote}>
-                        Save
-                    </button>
-                </div>
-            )}
-        </div>
+                )
+            }
+        </div >
     )
 }

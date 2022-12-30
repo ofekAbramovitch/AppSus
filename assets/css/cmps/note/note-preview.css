@@ -1,0 +1,29 @@
+.note-preview h5 {
+    font-size: x-large;
+}
+
+.note-preview p {
+    font-size: large;
+}
+
+.note-preview img {
+    padding: 0px;
+}
+
+.note-color {
+    display: flex;
+    flex-direction: row;
+}
+
+.note-color div {
+    width: 20px;
+    height: 20px;
+}
+
+.todos-container ul {
+    padding-inline-start: 0px;
+}
+
+.todos-container li {
+    border: none;
+}

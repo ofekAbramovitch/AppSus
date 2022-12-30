@@ -1,20 +1,20 @@
 .add-note {
-    border: 1px solid black;
     outline: none;
     max-width: 600px;
     margin: 0 auto;
-    display: block;
+    display: flex;
+    flex-direction: column;
 }
 
 .add-note input {
-    outline: none;
-    border: none;
+    border: rgb(184, 172, 172) 1px solid;
+    border-radius: 3%;
     padding: 0.65em 2em;
 }
 
 .add-note input:hover {
     outline: none;
-    color: #fff;
+    color: black;
     background-color: #fff;
 }
 
