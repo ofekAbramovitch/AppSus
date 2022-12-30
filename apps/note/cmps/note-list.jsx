@@ -1,13 +1,8 @@
 import { NotePreview } from './note-preview.jsx'
 
-
 import { noteService } from "../services/note.service.js"
 
 export function NoteList({ notes, setNotes }) {
-
-    if (!notes || !notes.length) return <div>Loading...</div>
-
-
     return (
         <ul className="note-list clean-list layout">
             {

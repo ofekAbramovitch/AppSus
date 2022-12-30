@@ -8,20 +8,26 @@
 
 .add-note input {
     border: rgb(184, 172, 172) 1px solid;
-    border-radius: 3%;
+    border-radius: 8px;
     padding: 0.65em 2em;
 }
 
-.add-note input:hover {
-    outline: none;
-    color: black;
-    background-color: #fff;
+.add-note textarea{
+    border: rgb(184, 172, 172) 1px solid;
+    border-radius: 8px;
+    padding: 0.65em 2em;
 }
 
 .add-note input:focus {
     color: #fff;
     border-radius: 8px;
-    outline: none;
+    color: black;
+    background-color: #fff;
+}
+
+.add-note textarea:focus {
+    color: #fff;
+    border-radius: 8px; 
     color: black;
     background-color: #fff;
 }
@@ -53,4 +59,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.add-note img {
+    margin: 0 auto;
+    padding: 1rem;
 }

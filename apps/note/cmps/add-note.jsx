@@ -1,17 +1,20 @@
 const { useState, useEffect, useRef } = React
 
 import { noteService } from '../services/note.service.js'
+import { loadImageFromInput } from '../services/upload.service.js'
 
 export function AddNote({ backgroundColor = "white", setNotes, isEditing, setIsEditing, noteId }) {
-    const [addParams, setaddParams] = useState(noteService.getDefaultNote())
+    const [addParams, setAddParams] = useState(noteService.getDefaultNote())
     const [isWriting, setIsWriting] = useState(false || isEditing)
     const inputRef = useRef(null)
+    const uploadImgInputRef = useRef(null)
+    const mainTextAreaRef = useRef(null)
     useOutsideEvent(inputRef)
 
     function handleChange({ target }) {
         let { value, name: field, type } = target
         value = type === 'number' ? +value : value
-        setaddParams(prev => {
+        setAddParams(prev => {
             prev.info[field] = value
             return { ...prev }
         })
@@ -19,7 +22,7 @@ export function AddNote({ backgroundColor = "white", setNotes, isEditing, setIsE
 
     function onLoadNote(noteId) {
         noteService.get(noteId)
-            .then(setaddParams)
+            .then(setAddParams)
     }
 
     function useOutsideEvent(ref) {
@@ -52,34 +55,55 @@ export function AddNote({ backgroundColor = "white", setNotes, isEditing, setIsE
 
     function clear() {
         setIsWriting(false)
-        setaddParams(noteService.getDefaultNote())
+        setAddParams(noteService.getDefaultNote())
+        mainTextAreaRef.current.placeholder = 'Take a note...'
+        mainTextAreaRef.current.name = 'txt'
+        mainTextAreaRef.current.id = 'txt'
+    }
+
+    function updateParamsSrc(img) {
+        addParams.info.url = img.src
+        addParams.type = 'note-img'
+        setAddParams({ ...addParams })
+    }
+
+    function onUploadImg(ev) {
+        loadImageFromInput(ev, updateParamsSrc)
+        setIsWriting(true)
+    }
+
+    function onYoutube() {
+        setIsWriting(true)
+        mainTextAreaRef.current.focus()
+        mainTextAreaRef.current.placeholder = 'Enter a Youtube Link...'
+        mainTextAreaRef.current.name = 'url'
+        mainTextAreaRef.current.id = 'url'
     }
 
     return (
         <div className='add-note' ref={inputRef}>
+            {addParams.info.url && <img src={addParams.info.url} />}
             {isWriting && (
-                <section>
-                    <input
-                        type='title'
-                        style={{ backgroundColor: backgroundColor }}
-                        placeholder='Title'
-                        id='title'
-                        name='title'
-                        value={addParams.info.title}
-                        onChange={handleChange}
-                    />
-                </section>
+                <input
+                    type='title'
+                    placeholder='Title'
+                    id='title'
+                    name='title'
+                    value={addParams.title}
+                    onChange={handleChange}
+                />
             )
             }
-            <input
-                type='text'
-                style={{ backgroundColor: backgroundColor }}
+            <textarea
+                type='title'
                 placeholder='Take a note...'
-                id='body'
-                name='body'
-                value={addParams.info.body}
+                id='txt'
+                name='txt'
+                rows={isEditing ? 3 : isWriting ? 2 : 1}
+                value={addParams.info.body || addParams.info.url}
                 onChange={handleChange}
                 onClick={() => setIsWriting(true)}
+                ref={mainTextAreaRef}
             />
             {
                 !isWriting && (
@@ -87,28 +111,51 @@ export function AddNote({ backgroundColor = "white", setNotes, isEditing, setIsE
                         <button className='btn btn-rnd-s'>
                             <i className='fa-solid fa-palette'></i>
                         </button>
-                        <button className='btn btn-rnd-s'>
+                        <button className='btn btn-rnd-s' onClick={onYoutube}>
+                            <i className='fa-brands fa-youtube'></i>
+                        </button>
+                        <button className='btn btn-rnd-s' onClick={() => uploadImgInputRef.current.click()}>
                             <i className='fa-solid fa-image'></i>
                         </button>
+                        <input
+                            type='file'
+                            className='file-input btn'
+                            name='image'
+                            id='image'
+                            hidden
+                            ref={uploadImgInputRef}
+                            onChange={onUploadImg}
+                        />
                     </div>
                 )
             }
-            {
-                isWriting && (
-                    <div className='utils'>
-                        <div className='btns'>
-                            <button className='btn btn-rnd-s'>
-                                <i className='fa-solid fa-palette'></i>
-                            </button>
-                            <button className='btn btn-rnd-s'>
-                                <i className='fa-solid fa-image'></i>
-                            </button>
-                        </div>
-                        <button className='btn add-btn btn-primary' onClick={addNote}>
-                            Save
+            {isWriting && (
+                <div className='utils'>
+                    <div className='btns'>
+                        <button className='btn btn-rnd-s'>
+                            <i className='fa-solid fa-palette'></i>
                         </button>
+                        <button className='btn btn-rnd-s' onClick={onYoutube}>
+                            <i className='fa-brands fa-youtube'></i>
+                        </button>
+                        <button className='btn btn-rnd-s' onClick={() => uploadImgInputRef.current.click()}>
+                            <i className='fa-solid fa-image'></i>
+                        </button>
+                        <input
+                            type='file'
+                            className='file-input btn'
+                            name='image'
+                            id='image'
+                            hidden
+                            ref={uploadImgInputRef}
+                            onChange={onUploadImg}
+                        />
                     </div>
-                )
+                    <button className='btn add-btn btn-primary' onClick={addNote}>
+                        Save
+                    </button>
+                </div>
+            )
             }
         </div >
     )
