@@ -5,10 +5,6 @@ const { useState } = React
 export function MailFilter({ onSetFilter }) {
     const[filter, setFilter] = useState({txt: '', isRead: ''})
 
-    // function handleChange({ target }) {
-    //     let { value } = target
-    //     setTxt(value)
-    // }
 
     function handleChange({ target }) {
         let { value, name: field } = target

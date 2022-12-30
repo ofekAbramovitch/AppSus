@@ -1,3 +1,6 @@
+import { SearchHeader } from "./search.jsx"
+
+
 const { Link, NavLink } = ReactRouterDOM
 
 export function AppHeader() {

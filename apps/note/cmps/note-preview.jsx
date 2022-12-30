@@ -54,8 +54,11 @@ function NoteTxt({ note, setNotes, onRemove }) {
         <button className='btn btn-rnd-s' onClick={() => setIsColor(!isColor)}>
             <i className='fa-solid fa-palette'></i>
         </button>
+        <button className='btn btn-rnd-s' onClick={() => onCopy(note.id, setNotes)}>
+            <i class="fa-solid fa-clone"></i>
+        </button>
         <button onClick={() => onRemove(note.id)}><i className="fa-solid fa-trash"></i></button>
-        <button><i className="fa-solid fa-thumbtack"></i></button>
+        <button onClick={() => { togglePin(note, setNotes) }}><i className="fa-solid fa-thumbtack"></i></button>
         {isColor && <NoteColor noteId={note.id} setNotes={setNotes} />}
         <button className="save-btn" onClick={() => saveNote(data, note.id)}>Save</button>
     </section>
@@ -78,8 +81,11 @@ function NoteImg({ note, setNotes, onRemove }) {
         <button className='btn btn-rnd-s' onClick={() => setIsColor(!isColor)}>
             <i className='fa-solid fa-palette'></i>
         </button>
+        <button className='btn btn-rnd-s' onClick={() => onCopy(note.id, setNotes)}>
+            <i class="fa-solid fa-clone"></i>
+        </button>
         <button onClick={() => onRemove(note.id)}><i className="fa-solid fa-trash"></i></button>
-        <button><i className="fa-solid fa-thumbtack"></i></button>
+        <button onClick={() => { togglePin(note, setNotes) }}><i className="fa-solid fa-thumbtack"></i></button>
         {isColor && <NoteColor noteId={note.id} setNotes={setNotes} />}
         <button className="save-btn" onClick={() => saveNote(data, note.id)}>Save</button>
     </section >
@@ -110,8 +116,11 @@ function NoteVideo({ note, setNotes, onRemove }) {
         <button className='btn btn-rnd-s' onClick={() => setIsColor(!isColor)}>
             <i className='fa-solid fa-palette'></i>
         </button>
+        <button className='btn btn-rnd-s' onClick={() => onCopy(note.id, setNotes)}>
+            <i class="fa-solid fa-clone"></i>
+        </button>
         <button onClick={() => onRemove(note.id)}><i className="fa-solid fa-trash"></i></button>
-        <button><i className="fa-solid fa-thumbtack"></i></button>
+        <button onClick={() => { togglePin(note, setNotes) }}><i className="fa-solid fa-thumbtack"></i></button>
         {isColor && <NoteColor noteId={note.id} setNotes={setNotes} />}
         <button className="save-btn" onClick={() => saveNote(data, note.id)}>Save</button>
 
@@ -143,8 +152,11 @@ function NoteTodos({ note, setNotes, onRemove }) {
         <button className='btn btn-rnd-s' onClick={() => setIsColor(!isColor)}>
             <i className='fa-solid fa-palette'></i>
         </button>
+        <button className='btn btn-rnd-s' onClick={() => onCopy(note.id, setNotes)}>
+            <i class="fa-solid fa-clone"></i>
+        </button>
         <button onClick={() => onRemove(note.id)}><i className="fa-solid fa-trash"></i></button>
-        <button><i className="fa-solid fa-thumbtack"></i></button>
+        <button onClick={() => { togglePin(note, setNotes) }}><i className="fa-solid fa-thumbtack"></i></button>
         {isColor && <NoteColor noteId={note.id} setNotes={setNotes} />}
         <button className="save-btn" onClick={() => saveNote(data, note.id)}>Save</button>
     </section >
@@ -156,6 +168,22 @@ function saveNote(info, noteId) {
             note.info = info
             noteService.saveNote(note)
         })
+}
+
+function onCopy(noteId, setNotes) {
+    noteService.get(noteId)
+        .then(note => {
+            const newNote = { ...note }
+            newNote.id = null
+            noteService.saveNote(newNote)
+                .then(() => setNotes())
+        })
+}
+
+function togglePin(note, setNotes) {
+    note.isPinned = !note.isPinned
+    noteService.saveNote(note)
+        .then(() => setNotes())
 }
 
 

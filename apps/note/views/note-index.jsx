@@ -2,28 +2,33 @@ const { useState, useEffect } = React
 
 import { NoteList } from '../cmps/note-list.jsx'
 import { AddNote } from '../cmps/add-note.jsx'
-import { AppHeader } from '../../../cmps/app-header.jsx'
+import { NoteHeader } from '../cmps/note-header.jsx'
 
 import { noteService } from '../services/note.service.js'
 
 
 export function NoteIndex() {
     const [notes, setNotes] = useState([])
+    const [filter, setFilter] = useState('')
 
     useEffect(() => {
-        noteService.query().then(setNotes)
-    }, [])
+        loadNotes()
+    }, [filter])
 
     function loadNotes() {
-        noteService.query().then(setNotes)
+        noteService.query(filter).then(setNotes)
     }
 
-    if (!notes || !notes.length) return <div>Loading...</div>
+    function onSetFilterTxt(filter) {
+        setFilter((prevFilter) => ({ ...prevFilter, txt: filter.txt}))
+    }
+
     return (
         <div className='note-index'>
-            <AppHeader />
+            <NoteHeader onSetFilter={onSetFilterTxt} />
             <AddNote setNotes={setNotes} />
-            <NoteList notes={notes} setNotes={loadNotes} />
+            <NoteList notes={noteService.getPinnedNotes(true, notes)} setNotes={loadNotes} />
+            <NoteList notes={noteService.getPinnedNotes(false, notes)} setNotes={loadNotes} />
         </div>
     )
 }

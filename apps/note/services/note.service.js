@@ -8,7 +8,8 @@ export const noteService = {
     remove,
     put,
     saveNote,
-    getDefaultNote
+    getDefaultNote,
+    getPinnedNotes
 }
 
 const NOTES_KEY = 'notesDB'
@@ -37,6 +38,10 @@ function saveNote(note) {
     } else {
         return storageService.post(NOTES_KEY, note)
     }
+}
+
+function getPinnedNotes(isPinned, notes) {
+    return notes.filter(note => note.isPinned === isPinned)
 }
 
 function getDefaultNote() {
