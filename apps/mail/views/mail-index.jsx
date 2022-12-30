@@ -13,7 +13,7 @@ export function MailIndex() {
     const [mails, setMails] = useState(null)
     const [isSendEmail, setIsSendEmail] = useState(false)
     const [filter, setFilter] = useState(mailService.createFilter())
-    const [screenWidth, setScreenWidth] = useState(screen.width)
+    const [screenWidth, setScreenWidth] = useState(window.innerWidth)
     const params = useParams()
 
     useEffect(() => {
@@ -69,12 +69,8 @@ export function MailIndex() {
 
     if(!mails) return <div>loading...</div>
     return <section className="mail-app">
-        <MailHeader onSetFilter={ onSetFilterTxt }/>
+        <MailHeader onSetFilter={ onSetFilterTxt } screenWidth={screenWidth}/>
         <div className="mail-content layout">
-            {/* <div className="folder-list-container">
-                    <button onClick={() => {setIsSendEmail(true)}}><i class="fa-solid fa-plus"></i> Compose</button>
-                    <MailFolderList setStatus={() => onSetFilterStatus((window.location.href).split('/').pop())}/>
-            </div> */}
             <div className="folder-list-container">
                     <button onClick={() => {setIsSendEmail(true)}}><i class="fa-solid fa-plus"></i>{screenWidth >= 650 && 'Compose'}</button>
                     <MailFolderList screenWidth={screenWidth} setStatus={() => onSetFilterStatus((window.location.href).split('/').pop())}/>
