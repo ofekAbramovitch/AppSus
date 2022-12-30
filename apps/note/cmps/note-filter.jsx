@@ -13,12 +13,11 @@ export function NoteFilter({ onSetFilter }) {
     }
 
     return <section className="note-filter">
-        <button><i className="fa fa-search form-control-feedback"></i></button>
         <div>
             <input type="text"
                 id="txt"
                 name="txt"
-                placeholder="Search"
+                placeholder="Search..."
                 value={filter.txt}
                 onChange={handleChange}
             />

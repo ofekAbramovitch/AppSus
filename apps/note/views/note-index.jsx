@@ -20,11 +20,13 @@ export function NoteIndex() {
     }
 
     return (
-        <div className='note-index'>
+        <section className='note-index'>
             <NoteHeader onSetFilter={setFilter} />
-            <AddNote setNotes={setNotes} />
-            <NoteList notes={noteService.getPinnedNotes(true, notes)} setNotes={loadNotes} />
-            <NoteList notes={noteService.getPinnedNotes(false, notes)} setNotes={loadNotes} />
-        </div>
+            <div className="note-content layout">
+                <AddNote setNotes={setNotes} />
+                <NoteList notes={noteService.getPinnedNotes(true, notes)} setNotes={loadNotes} />
+                <NoteList notes={noteService.getPinnedNotes(false, notes)} setNotes={loadNotes} />
+            </div>
+        </section>
     )
 }
