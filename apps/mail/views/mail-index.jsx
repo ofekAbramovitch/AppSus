@@ -15,6 +15,7 @@ export function MailIndex() {
     const [filter, setFilter] = useState(mailService.createFilter())
     const [screenWidth, setScreenWidth] = useState(window.innerWidth)
     const params = useParams()
+    console.log('params:', params)
 
     useEffect(() => {
         window.addEventListener('resize', () => setScreenWidth(getScreenWidth()))
