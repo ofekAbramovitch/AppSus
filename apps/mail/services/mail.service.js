@@ -68,6 +68,7 @@ function createFilter() {
 function createEmptyMail() {
     return {
         name: 'Mahatma Appsus',
+        status: 'draft',
         subject: '',
         body: '',
         isRead: false,

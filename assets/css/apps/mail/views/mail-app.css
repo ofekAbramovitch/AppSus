@@ -4,19 +4,16 @@
 }
 
 .mail-content {
-    display: grid;
+    display: flex;
+    justify-content: space-between;
     padding-top: 20px;
-    grid-template-columns: 2fr 4fr;
-    grid-template-areas:
-    "folder list";
 }
 
 .mail-app .folder-list-container {
-    grid-area: folder;
+    flex: 1;
 }
 
 .mail-app .mail-list {
-    grid-area: list;
     padding: 40px 20px;
     border-radius: 10px;
     background-color: white;
