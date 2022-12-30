@@ -48,7 +48,7 @@ export function MailIndex() {
     }
 
     function checkOnSentMail() {
-        return !params.mailId || (params.title && params.body) && isSendEmail
+        return !params.mailId && isSendEmail || (params.title && params.body)
     }
 
     function onMoveToTrash(mail) {
