@@ -41,9 +41,16 @@ export function MailPreview({mail, loadMails}) {
     }
 
     function onMoveToTrash() {
-        mail.status = 'trash'
-        mailService.save(mail).
-        then(() => loadMails())
+        if( mail.status === 'trash') {
+            mailService.remove(mail.id).
+            then(() => loadMails())
+        }
+        else {
+            mail.status = 'trash'
+            mailService.save(mail).
+            then(() => loadMails())
+        }
+        
     }
 
     function onMoveToDetails() {
@@ -64,6 +71,7 @@ export function MailPreview({mail, loadMails}) {
             {!isMouseOver && screenWidth <= 481 && <div className="date-stared">
                 <div className="date">{getDate(mail.sentAt)}</div>
                 {getStared()}
+                {isMouseOver && <i onClick={() => onMoveToTrash()} className="fa-solid fa-trash"></i>}
             </div>}
             {screenWidth > 481 && getStared()}
             {screenWidth >= 768 && <div>{mail.name}</div>}
