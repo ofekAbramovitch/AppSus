@@ -9,8 +9,9 @@
     --note-bg-color: #fff;
     --note-color: #202124;
     /* bp */
-    --xs: 450px;
-    --s: 650px;
-    --m:850px;
-    --l: 1200px;
+    --xxs: 320px;
+    --xs: 481px;
+    --s: 768px;
+    --m: 1025px;
+    --l: 1281px;
 }

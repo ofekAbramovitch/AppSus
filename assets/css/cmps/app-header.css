@@ -1,6 +1,6 @@
 header {
     background-color: white;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     height: 7vh;
 }
 
@@ -50,7 +50,7 @@ header nav {
     transition: transform .6s, box-shadow .6s;
     z-index: 1;
     background-color: white;
-} 
+}
 
 header a {
     display: flex;
@@ -61,11 +61,15 @@ header a {
     height: 40px;
 }
 
-@media (min-width: 650px) {
+@media (min-width: 481px) {
     header nav {
         transform: translateX(0);
         position: static;
         flex-direction: row-reverse;
-    } 
-  } 
+    }
 
+    .header-content .logo {
+        transform: translateX(0);
+        position: static;
+    }
+}
