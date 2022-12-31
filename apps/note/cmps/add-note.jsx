@@ -120,9 +120,6 @@ export function AddNote({ setNotes, isEditing, setIsEditing, noteId, params, set
             {
                 !isWriting && (
                     <div className='inline-utils'>
-                        <button className='btn btn-rnd-s'>
-                            <i className='fa-solid fa-palette'></i>
-                        </button>
                         <button className='btn btn-rnd-s' onClick={onYoutube}>
                             <i className='fa-brands fa-youtube'></i>
                         </button>

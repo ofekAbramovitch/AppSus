@@ -27,3 +27,36 @@
 .todos-container li {
     border: none;
 }
+
+.note-preview .txt-container .btns,
+.note-preview .img-container .btns,
+.note-preview .vid-container .btns,
+.note-preview .todos-container .btns {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    margin-bottom: 0px;
+}
+
+.note-preview .txt-container .btn,
+.note-preview .img-container .btn,
+.note-preview .vid-container .btn,
+.note-preview .todos-container .btn {
+    border: none;
+    background-color: snow;
+}
+
+.note-preview .txt-container .save-btn,
+.note-preview .img-container .save-btn,
+.note-preview .vid-container .save-btn,
+.note-preview .todos-container .save-btn {
+    border: none;
+    background-color: cornflowerblue;
+    color: azure;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.note-preview .img-container .btns,
+.note-preview .vid-container .btns {
+    margin-inline-start: 65px;
+}
