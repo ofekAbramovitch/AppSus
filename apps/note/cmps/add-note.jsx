@@ -3,7 +3,7 @@ const { useState, useEffect, useRef } = React
 import { noteService } from '../services/note.service.js'
 import { loadImageFromInput } from '../services/upload.service.js'
 
-export function AddNote({ backgroundColor = "white", setNotes, isEditing, setIsEditing, noteId }) {
+export function AddNote({ setNotes, isEditing, setIsEditing, noteId }) {
     const [addParams, setAddParams] = useState(noteService.getDefaultNote())
     const [isWriting, setIsWriting] = useState(false || isEditing)
     const inputRef = useRef(null)
@@ -44,21 +44,21 @@ export function AddNote({ backgroundColor = "white", setNotes, isEditing, setIsE
     function addNote() {
         clear()
         if (isEditing) setIsEditing(false)
-        noteService.saveNote(addParams).then(newNote => {
-            if (!isEditing) return setNotes(prev => [newNote, ...prev])
-            setNotes(prevNotes => {
-                prevNotes[prevNotes.findIndex(note => note.id === newNote.id)] = newNote
-                return [...prevNotes]
+        noteService.saveNote(addParams)
+            .then(newNote => {
+                if (!isEditing) return setNotes(prev => [newNote, ...prev])
+                setNotes(prevNotes => {
+                    prevNotes[prevNotes.findIndex(note => note.id === newNote.id)] = newNote
+
+                    return [...prevNotes]
+                })
             })
-        })
     }
 
     function clear() {
         setIsWriting(false)
         setAddParams(noteService.getDefaultNote())
-        mainTextAreaRef.current.placeholder = 'Take a note...'
-        mainTextAreaRef.current.name = 'txt'
-        mainTextAreaRef.current.id = 'txt'
+        mainTextAreaRef.current.value = ''
     }
 
     function updateParamsSrc(img) {
@@ -95,11 +95,10 @@ export function AddNote({ backgroundColor = "white", setNotes, isEditing, setIsE
             )
             }
             <textarea
-            // className="layout"
                 type='title'
                 placeholder='Take a note...'
-                id='txt'
-                name='txt'
+                id='body'
+                name='body'
                 rows={isEditing ? 3 : isWriting ? 2 : 1}
                 value={addParams.info.body || addParams.info.url}
                 onChange={handleChange}

@@ -79,7 +79,7 @@ function _createNotes() {
             _createNote('note-txt', { title: 'hi', body: 'Note number 2!' }),
             _createNote('note-img', { title: 'ho', url: 'https://techcrunch.com/wp-content/uploads/2021/07/GettyImages-1207206237.jpg?w=730&crop=1' }),
             _createNote('note-video', { title: 'hi', url: 'https://www.youtube.com/embed/yWCGKKtW03g' }),
-            _createNote('note-todos', { title: 'todos', body: ['to clean', 'to eat', 'to finish sprint 3'] })
+            _createNote('note-todos', { title: 'todos', body: ['to clean', 'to eat', 'to finish sprint 3'] }),
         ]
     }
     utilService.saveToStorage(NOTES_KEY, notes)
