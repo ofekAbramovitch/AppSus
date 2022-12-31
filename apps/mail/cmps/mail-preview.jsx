@@ -8,7 +8,7 @@ import { mailService } from "../services/mail.service.js"
 
 export function MailPreview({mail, loadMails}) {
     const [isMouseOver, setIsMouseOver] = useState(false)
-    const [screenWidth, setScreenWidth] = useState(screen.width)
+    const [screenWidth, setScreenWidth] = useState(window.innerWidth)
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -63,15 +63,16 @@ export function MailPreview({mail, loadMails}) {
         
     }
 
-    console.log('() => setScreenWidth(screen.width):', screen.width)
+    console.log('() => setScreenWidth(screen.width):', screenWidth)
 
-    return <article className={`mail-preview  + ${mail.isRead && ' read'}` } onMouseOver={() => setIsMouseOver(true)} onMouseOut={() => setIsMouseOver(false)}>
+    return <article className={`mail-preview ${mail.isRead && ' read'}` } onMouseOver={() => setIsMouseOver(true)} onMouseOut={() => setIsMouseOver(false)}>
+        {/* {console.log('screenWidth:', screenWidth)} */}
         <div className="stared-name-container" onClick={onToggleStared}>
             {isMouseOver && screenWidth <= 481 && <i onClick={() => onMoveToTrash()} className="fa-solid fa-trash"></i>}
             {!isMouseOver && screenWidth <= 481 && <div className="date-stared">
                 <div className="date">{getDate(mail.sentAt)}</div>
                 {getStared()}
-                {isMouseOver && <i onClick={() => onMoveToTrash()} className="fa-solid fa-trash"></i>}
+                {/* {isMouseOver && <i onClick={() => onMoveToTrash()} className="fa-solid fa-trash"></i>} */}
             </div>}
             {screenWidth > 481 && getStared()}
             {screenWidth >= 768 && <div>{mail.name}</div>}
