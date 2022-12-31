@@ -75,7 +75,7 @@ function createEmptyMail() {
         subject: '',
         body: '',
         isRead: false,
-        sentAt : '',
+        sentAt : Date.now(),
         from: gLoggedinUser.email,
         to: ''
         }

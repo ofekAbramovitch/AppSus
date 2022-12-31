@@ -22,8 +22,9 @@
 .folder-list-container button {
     background-color: #c2e7ff;
     border-radius: 10px;
-    padding: 20px;
+    padding: 3px;
     font-size: large;
+    margin: 0;
 }
 
 .folder-list-container {
@@ -32,55 +33,12 @@
 }
 
 .mail-list-container {
-    max-width: 320px;
+    max-width: 100%;
 }
 
-@media (min-width: 320px) {
-    .mail-list-container {
-        max-width: 481px;
-    }
-
-    .folder-list-container {
-        max-width: 481px;
-    }
-}
 
 @media (min-width: 481px) {
-    .mail-list-container {
-        max-width: 768px;
-    }
-
-    .folder-list-container {
-        max-width: 768px;
-    }
+    .folder-list-container button {
+    padding: 20px;
 }
-
-@media (min-width: 768px) {
-    .mail-list-container {
-        max-width: 1024px;
-    }
-
-    .folder-list-container {
-        max-width: 1024px;
-    }
-}
-
-@media (min-width: 1024px) {
-    .mail-list-container {
-        max-width: 1281px;
-    }
-
-    .folder-list-container {
-        max-width: 1281px;
-    }
-}
-
-@media (min-width: 1281px) {
-    .mail-list-container {
-        max-width: 100%;
-    }
-
-    .folder-list-container {
-        max-width: 100%;
-    }
 }
