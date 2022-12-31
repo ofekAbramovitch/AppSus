@@ -1,11 +1,13 @@
 const { useState, useEffect, useRef } = React
+const { useNavigate } = ReactRouterDOM
 
 import { noteService } from '../services/note.service.js'
 import { loadImageFromInput } from '../services/upload.service.js'
 
-export function AddNote({ setNotes, isEditing, setIsEditing, noteId }) {
+export function AddNote({ setNotes, isEditing, setIsEditing, noteId, params, setMail }) {
     const [addParams, setAddParams] = useState(noteService.getDefaultNote())
     const [isWriting, setIsWriting] = useState(false || isEditing)
+    const navigate = useNavigate()
     const inputRef = useRef(null)
     const uploadImgInputRef = useRef(null)
     const mainTextAreaRef = useRef(null)
@@ -27,6 +29,12 @@ export function AddNote({ setNotes, isEditing, setIsEditing, noteId }) {
 
     function useOutsideEvent(ref) {
         useEffect(() => {
+            if (params) setAddParams(prev => {
+                setIsWriting(true)
+                prev.info.title = params.mailTitle
+                prev.info.body = params.mailBody
+                return prev
+            })
             if (noteId) onLoadNote(noteId)
             function handleOutsideEvent(event) {
                 if (ref.current && !ref.current.contains(event.target)) {
@@ -59,6 +67,10 @@ export function AddNote({ setNotes, isEditing, setIsEditing, noteId }) {
         setIsWriting(false)
         setAddParams(noteService.getDefaultNote())
         mainTextAreaRef.current.value = ''
+        if (params) {
+            setMail(false)
+            navigate('/note')
+        }
     }
 
     function updateParamsSrc(img) {
@@ -89,7 +101,7 @@ export function AddNote({ setNotes, isEditing, setIsEditing, noteId }) {
                     placeholder='Title'
                     id='title'
                     name='title'
-                    value={addParams.title}
+                    value={addParams.info.title}
                     onChange={handleChange}
                 />
             )
