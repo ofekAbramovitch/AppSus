@@ -8,7 +8,7 @@ export function MailHeader({ onSetFilter, screenWidth }) {
     function toggleMenu() {
         setIsMenuOpen(prev => !prev)
     }
-    return <header className="app-header">
+    return <header className="app-header mail-header">
         <div className="header-content layout">
            <Link to="/">
                 <div className="logo">
