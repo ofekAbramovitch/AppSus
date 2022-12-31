@@ -62,7 +62,6 @@ header a {
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    height: 40px;
 }
 
 @media (min-width: 481px) {
