@@ -22,7 +22,7 @@ export function MailDetails() {
         navigate(`/note/${mail.subject}/${mail.body}`)
     }
 
-    if(!mail) return <div>loading...</div> 
+    if(!mail) return <div>Loading...</div>
     return <section className="mail-details">
         <div className="buttons">
         <i onClick={sendNote} className="fa-sharp fa-solid fa-paper-plane"></i>

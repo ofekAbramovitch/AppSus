@@ -78,7 +78,7 @@ export function MailIndex() {
     }
 
 
-    if(!mails) return <div>loading...</div>
+    if(!mails) return <div>Loading...</div>
     return <section className="mail-app">
         <MailHeader onSetFilter={ onSetFilterTxt } screenWidth={screenWidth}/>
         <div className="mail-content layout">
