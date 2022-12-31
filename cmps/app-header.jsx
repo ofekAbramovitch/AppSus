@@ -1,9 +1,11 @@
-import { SearchHeader } from "./search.jsx"
-
-
 const { Link, NavLink } = ReactRouterDOM
+const { useState } = React
 
-export function AppHeader() {
+export function AppHeader({ screenWidth }) {
+    const [isMenuOpen, setIsMenuOpen] = useState(false)
+    function toggleMenu() {
+        setIsMenuOpen(prev => !prev)
+    }
 
     return <header className="app-header">
         <div className="header-content layout">
@@ -13,12 +15,13 @@ export function AppHeader() {
                     <h3>Appsus</h3>
                 </div>
             </Link>
-            <nav>
+            {screenWidth <= 481 && <i onClick={toggleMenu} className="fa-solid fa-bars"></i>}
+            {(screenWidth > 481 || isMenuOpen) && <nav style={{ transform: "translateX(0)" }}>
                 <NavLink to="/">Home</NavLink>
                 <NavLink to="/about">About</NavLink>
-                <NavLink to="/mail/inbox">Mail</NavLink>
+                <NavLink to="/mail">Mail</NavLink>
                 <NavLink to="/note">Note</NavLink>
-            </nav>
+            </nav>}
         </div>
     </header>
 }

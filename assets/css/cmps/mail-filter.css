@@ -6,7 +6,7 @@
 
 .mail-filter input{
     border: 0;
-    width: 100px;
+    width: 50px;
     height: 5vh;
     background-color: var(--mail-bg-color);
 }
@@ -23,19 +23,31 @@
     border-left: 1px solid rgb(0,0,0,0.1);
 }
 
-@media (min-width: 650px) {
+@media (min-width: 320px) {
+    .mail-filter input{
+        width: 50px;
+    }
+}
+
+@media (min-width: 481px) {
+    .mail-filter input{
+        width: 100px;
+    }
+}
+
+@media (min-width: 768px) {
     .mail-filter input{
         width: 150px;
     }
 }
 
-@media (min-width: 850px) {
+@media (min-width: 1025px) {
   .mail-compose {
     width: 500px;
 }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1281px) {
     .mail-filter input{
         width: 300px;
     }

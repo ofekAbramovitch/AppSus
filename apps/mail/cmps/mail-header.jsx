@@ -18,8 +18,8 @@ export function MailHeader({ onSetFilter, screenWidth }) {
                 </div>
             </Link>
             <MailFilter onSetFilter={ onSetFilter }/>
-            {screenWidth <= 650 && <i onClick={toggleMenu} className="fa-solid fa-bars"></i>}
-            {(screenWidth > 650 || isMenuOpen) && <nav style={{transform: "translateX(0)"}}>
+            {screenWidth <= 768 && <i onClick={toggleMenu} className="fa-solid fa-bars"></i>}
+            {(screenWidth > 768 || isMenuOpen) && <nav style={{transform: "translateX(0)"}}>
                 <NavLink to="/">Home</NavLink>
                 <NavLink to="/about">About</NavLink>
                 <NavLink to="/mail">Mail</NavLink>

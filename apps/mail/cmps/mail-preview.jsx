@@ -60,21 +60,21 @@ export function MailPreview({mail, loadMails}) {
 
     return <article className={`mail-preview  + ${mail.isRead && ' read'}` } onMouseOver={() => setIsMouseOver(true)} onMouseOut={() => setIsMouseOver(false)}>
         <div className="stared-name-container" onClick={onToggleStared}>
-            {isMouseOver && screenWidth <= 650 && <i onClick={() => onMoveToTrash()} className="fa-solid fa-trash"></i>}
-            {!isMouseOver && screenWidth <= 650 && <div className="date-stared">
+            {isMouseOver && screenWidth <= 481 && <i onClick={() => onMoveToTrash()} className="fa-solid fa-trash"></i>}
+            {!isMouseOver && screenWidth <= 481 && <div className="date-stared">
                 <div className="date">{getDate(mail.sentAt)}</div>
                 {getStared()}
             </div>}
-            {screenWidth > 650 && getStared()}
-            {screenWidth >= 850 && <div>{mail.name}</div>}
+            {screenWidth > 481 && getStared()}
+            {screenWidth >= 768 && <div>{mail.name}</div>}
         </div>
         <div className="mail-preview-content" onClick={onMoveToDetails}>
-            {screenWidth < 850 && <div>{mail.name}</div>}
+            {screenWidth < 768 && <div>{mail.name}</div>}
             <h3 className="mail-subject"><LongTxt txt={mail.subject} length={5} isUseButton={false} /></h3>
-            {screenWidth >= 850 && <div>-</div>}
+            {screenWidth >= 768 && <div>-</div>}
             <div className="mail-body">{mail.body}</div>
         </div>
-        {screenWidth > 650 && <div>
+        {screenWidth > 481 && <div>
             {!isMouseOver && <div className="date">{getDate(mail.sentAt)}</div>}
             {isMouseOver && <i onClick={() => onMoveToTrash()} className="fa-solid fa-trash"></i>}
         </div> }

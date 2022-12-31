@@ -60,13 +60,8 @@
 .read {
     background-color: var( --mail-bg-color);
 }
-
-
-@media (min-width: 650px) {
-
-  }
   
-  @media (min-width: 850px) {
+  @media (min-width: 1024px) {
     .stared-name-container {
         width: 150px;
         flex-direction: row;
@@ -83,7 +78,7 @@
     }
   }
   
-  @media (min-width: 1200px) {
+  @media (min-width: 1281px) {
     mail-preview .mail-preview-content{
         width: 500px;
     } 

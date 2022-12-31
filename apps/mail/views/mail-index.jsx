@@ -83,7 +83,7 @@ export function MailIndex() {
         <MailHeader onSetFilter={ onSetFilterTxt } screenWidth={screenWidth}/>
         <div className="mail-content layout">
             <div className="folder-list-container">
-                    <button onClick={() => {setIsSendEmail(true)}}><i class="fa-solid fa-plus"></i>{screenWidth >= 650 && 'Compose'}</button>
+                    <button onClick={() => {setIsSendEmail(true)}}><i class="fa-solid fa-plus"></i>{screenWidth >= 481 && 'Compose'}</button>
                     <MailFolderList screenWidth={screenWidth} setStatus={() => onSetFilterStatus((window.location.href).split('/').pop())}/>
             </div>
             <div>
