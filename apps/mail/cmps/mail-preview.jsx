@@ -63,16 +63,12 @@ export function MailPreview({mail, loadMails}) {
         
     }
 
-    console.log('() => setScreenWidth(screen.width):', screenWidth)
-
-    return <article className={`mail-preview ${mail.isRead && ' read'}` } onMouseOver={() => setIsMouseOver(true)} onMouseOut={() => setIsMouseOver(false)}>
-        {/* {console.log('screenWidth:', screenWidth)} */}
+    return <article className={`mail-preview ${mail.isRead && ' read'}` } onTouchStart={() => setIsMouseOver(true)} onTouchEnd={() => setIsMouseOver(false)} onMouseOver={() => setIsMouseOver(true)} onMouseOut={() => setIsMouseOver(false)}>
         <div className="stared-name-container" onClick={onToggleStared}>
             {isMouseOver && screenWidth <= 481 && <i onClick={() => onMoveToTrash()} className="fa-solid fa-trash"></i>}
             {!isMouseOver && screenWidth <= 481 && <div className="date-stared">
                 <div className="date">{getDate(mail.sentAt)}</div>
                 {getStared()}
-                {/* {isMouseOver && <i onClick={() => onMoveToTrash()} className="fa-solid fa-trash"></i>} */}
             </div>}
             {screenWidth > 481 && getStared()}
             {screenWidth >= 768 && <div>{mail.name}</div>}
