@@ -8,7 +8,8 @@ export const utilService = {
     getMonthName,
     loadFromStorage,
     saveToStorage,
-    debounce
+    debounce,
+    getPrice
 }
 
 function makeId(length = 6) {
@@ -20,6 +21,10 @@ function makeId(length = 6) {
     }
 
     return txt
+}
+
+function getPrice(amount, language, currency) {
+    return amount.toLocaleString(language , { style: 'currency', currency })
 }
 
 function debounce(func, timeout = 2000){

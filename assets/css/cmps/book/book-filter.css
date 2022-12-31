@@ -1,0 +1,22 @@
+
+.book-filter input{
+    width: 200px;
+    height: 50px;
+    border-radius: 10px;
+    margin-left: 10px;
+}
+
+.book-filter div{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.book-filter{
+    background-color: var(--clr1);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.book-filter button{
+    margin: 0;
+}

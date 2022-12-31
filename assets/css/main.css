@@ -20,6 +20,16 @@
 @import './cmps/mail-filter.css';
 @import './cmps/mail-details.css';
 
+@import './cmps/book/book-details.css';
+@import './cmps/book/book-edit.css';
+@import './cmps/book/book-filter.css';
+@import './cmps/book/book-list.css';
+@import './cmps/book/book-preview.css';
+@import './cmps/book/book-review.css';
+@import './cmps/book/review-list.css';
+@import './cmps/book/loading.css';
+@import './cmps/book/book-index.css';
+
 @import './cmps/user-msg.css';
 @import './cmps/app-header.css';
 @import './cmps/note/add-note.css';
