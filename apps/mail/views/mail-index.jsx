@@ -86,7 +86,7 @@ export function MailIndex() {
                     <button onClick={() => {setIsSendEmail(true)}}><i class="fa-solid fa-plus"></i>{screenWidth >= 481 && 'Compose'}</button>
                     <MailFolderList screenWidth={screenWidth} setStatus={() => onSetFilterStatus((window.location.href).split('/').pop())}/>
             </div>
-            <div>
+            <div className="mail-list-container">
                     {isShowList() && <MailList mails={mails} loadMails={loadMails}/>}
                     {isOnSentMail() && <MailCompose  onSaveMail={onSaveMail} setIsSendEmail={setIsSendEmail} onMoveToTrash={onMoveToTrash} params={params}/>}
                     {params.mailId && <MailDetails />}

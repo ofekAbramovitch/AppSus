@@ -14,7 +14,6 @@ export function NotePreview({ note, setNotes }) {
     }
 
     function onSendMail(note) {
-        console.log(note)
         navigate(`/mail/inbox/${note.info.title}/${note.info.body}`)
     }
 
@@ -48,7 +47,6 @@ function NoteTxt({ note, setNotes, onRemove, onSendMail }) {
             </div>
             <div>
                 <blockquote onBlur={ev => setData({ ...data, body: ev.target.innerText })} contentEditable="true">
-                    {console.log(note.info.body)}
                     <p>{note.info.body}</p>
                 </blockquote>
             </div>

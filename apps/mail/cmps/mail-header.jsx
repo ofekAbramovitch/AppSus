@@ -1,5 +1,4 @@
 const { Link, NavLink } = ReactRouterDOM
-
 const { useState } = React
 
 import { MailFilter } from "./mail-filter.jsx"

@@ -14,7 +14,6 @@
 }
 
 .mail-app .mail-list {
-    max-width: 320px;
     padding: 40px 20px;
     border-radius: 10px;
     background-color: white;
@@ -29,34 +28,59 @@
 
 .folder-list-container {
     font-size: large;
+    max-width: 320px;
+}
+
+.mail-list-container {
+    max-width: 320px;
 }
 
 @media (min-width: 320px) {
-    .mail-app .mail-list {
+    .mail-list-container {
+        max-width: 481px;
+    }
+
+    .folder-list-container {
         max-width: 481px;
     }
 }
 
 @media (min-width: 481px) {
-    .mail-app .mail-list {
+    .mail-list-container {
+        max-width: 768px;
+    }
+
+    .folder-list-container {
         max-width: 768px;
     }
 }
 
 @media (min-width: 768px) {
-    .mail-app .mail-list {
+    .mail-list-container {
+        max-width: 1024px;
+    }
+
+    .folder-list-container {
         max-width: 1024px;
     }
 }
 
 @media (min-width: 1024px) {
-    .mail-app .mail-list {
+    .mail-list-container {
+        max-width: 1281px;
+    }
+
+    .folder-list-container {
         max-width: 1281px;
     }
 }
 
 @media (min-width: 1281px) {
-    .mail-app .mail-list {
+    .mail-list-container {
+        max-width: 100%;
+    }
+
+    .folder-list-container {
         max-width: 100%;
     }
 }

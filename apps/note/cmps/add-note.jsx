@@ -81,7 +81,7 @@ export function AddNote({ backgroundColor = "white", setNotes, isEditing, setIsE
     }
 
     return (
-        <div className='add-note' ref={inputRef}>
+        <div className='add-note layout' ref={inputRef}>
             {addParams.info.url && <img src={addParams.info.url} />}
             {isWriting && (
                 <input
@@ -95,6 +95,7 @@ export function AddNote({ backgroundColor = "white", setNotes, isEditing, setIsE
             )
             }
             <textarea
+            // className="layout"
                 type='title'
                 placeholder='Take a note...'
                 id='txt'

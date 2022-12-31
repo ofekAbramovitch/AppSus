@@ -79,7 +79,7 @@
   }
   
   @media (min-width: 1281px) {
-    mail-preview .mail-preview-content{
+    .mail-preview .mail-preview-content{
         width: 500px;
     } 
     .date {
