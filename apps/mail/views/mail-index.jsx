@@ -45,7 +45,7 @@ export function MailIndex() {
         mailService.save(mail).then(() =>{
             setMails(mails)
             setIsSendEmail(false)
-            navigate('/mail/inbox')
+            navigate('/mail/sent-mail')
     })
     }
 
