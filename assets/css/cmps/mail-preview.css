@@ -1,18 +1,17 @@
 .mail-preview {
     display: flex;
     justify-content: space-between;
-    gap: 50px;
+    gap: 20px;
     align-items: center;
     padding: 10px;
     border-bottom: 1px solid rgb(0,0,0,0.1);
-
 }
 
 .mail-preview .mail-preview-content{
     display: flex;
     flex-direction: column;
     gap: 5px;
-    width: 150px;
+    width: 120px;
     white-space: nowrap
 } 
 
@@ -61,14 +60,23 @@
     background-color: var( --mail-bg-color);
 }
   
-  @media (min-width: 1024px) {
+  @media (min-width: 768px) {
+    .mail-preview {
+        gap: 50px;
+    }
     .stared-name-container {
         width: 150px;
         flex-direction: row;
     }
     .mail-preview .mail-preview-content{
-        width: 300px;
+        width: 250px;
         flex-direction: row;
+    } 
+  }
+  
+  @media (min-width: 1024px) {
+    .mail-preview .mail-preview-content{
+        width: 500px;
     } 
     .date {
         width: 50px;
@@ -79,9 +87,6 @@
   }
   
   @media (min-width: 1281px) {
-    .mail-preview .mail-preview-content{
-        width: 500px;
-    } 
     .date {
         width: 100px;
     }

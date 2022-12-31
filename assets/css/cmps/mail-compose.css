@@ -1,6 +1,6 @@
 
 .mail-compose {
-    width: 600px;
+    width: 200px;
     display: flex;
     flex-direction: column;
     gap: 0;
@@ -62,31 +62,25 @@
 
 @media (min-width:320px) {
     .mail-compose {
-        width:50px;
+        width: 250px;
     }
 }
 
 @media (min-width: 481px) {
     .mail-compose {
-        width: 150px;
+        width: 300px;
     }
 }
 
 @media (min-width: 768px) {
     .mail-compose {
-        width: 300px;
+        width: 500px;
     }
 }
 
 @media (min-width: 1025px) {
   .mail-compose {
-    width: 500px;
+    width: 800px;
 }
-}
-
-@media (min-width: 1281px) {
-    .mail-compose {
-        width: 800px;
-    }
 }
 

@@ -22,8 +22,11 @@ export function MailDetails() {
     {console.log('mail:', mail)}
     return <section className="mail-details">
         <button onClick={() => navigate(-1)}>X</button>
-        <h2>{mail.subject}</h2>
-        <div>from: {mail.from}</div>
-        <div>{mail.body}</div>
+        <div className="details-content">
+            <h2>{mail.subject}</h2>
+            <div>from: {mail.from}</div>
+            <div>{mail.body}</div>
+        </div>
+        
     </section>
 }
