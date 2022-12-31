@@ -18,10 +18,17 @@ export function MailDetails() {
         mailService.get(params.mailId).then(setMail)
     }
 
+    function sendNote() {
+        navigate(`/note/${mail.subject}/${mail.body}`)
+    }
+
     if(!mail) return <div>loading...</div> 
-    {console.log('mail:', mail)}
     return <section className="mail-details">
+        <div className="buttons">
+        <i onClick={sendNote} className="fa-sharp fa-solid fa-paper-plane"></i>
         <button onClick={() => navigate(-1)}>X</button>
+        </div>
+        
         <div className="details-content">
             <h2>{mail.subject}</h2>
             <div>from: {mail.from}</div>

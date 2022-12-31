@@ -14,13 +14,18 @@
     gap: 30px;
 }
 
-.mail-details button{
+.mail-details .buttons {
     display: flex;
     flex-direction: row-reverse;
+    gap: 20px;
     margin-bottom: 5px;
+    cursor: pointer;
+}
+.mail-details button{
     font-size: large;
     background-color: white;
     border: 0;
+    cursor: pointer;
 }
 
 @media (min-width: 481px) {
