@@ -26,12 +26,12 @@ export function MailDetails() {
     return <section className="mail-details">
         <div className="buttons">
         <i onClick={sendNote} className="fa-sharp fa-solid fa-paper-plane"></i>
-        <button onClick={() => navigate(-1)}>X</button>
+        <i onClick={() => navigate(-1)} className="fas fa-share"></i>
         </div>
         
         <div className="details-content">
             <h2>{mail.subject}</h2>
-            <div>from: {mail.from}</div>
+            <div>{mail.name} {`  < ${mail.from} >`}</div>
             <div>{mail.body}</div>
         </div>
         

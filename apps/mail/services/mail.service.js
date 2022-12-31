@@ -227,6 +227,18 @@ function _createMails() {
         from: 'theOpen@openu.ac.il',
         to: gLoggedinUser.email
         }, 
+        {
+        id: 'e113',
+        status: 'inbox',
+        name: 'Canva',
+        subject: 'Canva updates',
+        body: 'Hi there, It’s one thing for us to tell you about new features, but it’s so much more special when we can share how these updates have helped people unlock their inner designer and achieve their goals! Here are a few of our favourite tweets from the last few months as people explore what’s new:\n“I have been playing with the Canva Video Editor today. You NEED to try it to see how awesome it really is. 💯 @Canva is truly becoming a one-stop shop for creativity!',
+        isRead: false,
+        isStared: false,
+        sentAt : 15339305945,
+        from: 'start@canva.com',
+        to: gLoggedinUser.email
+        }, 
     ]
 
     utilService.saveToStorage(MAILS_KEY, mails)
