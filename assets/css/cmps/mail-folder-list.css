@@ -1,3 +1,6 @@
+.mail-app {
+    background-color: rgb(209, 202, 202);
+}
 
 .mail-folder-list nav{
     display: flex;

@@ -1,7 +1,12 @@
 header {
-    background-color: white;
+    background-color: rgb(16, 16, 16);
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     height: 7vh;
+    color: aliceblue;
+}
+
+.header-content nav{
+    background-color: rgb(16, 16, 16);
 }
 
 .header-content {
@@ -35,7 +40,7 @@ nav a:active {
 }
 
 header nav a.active {
-    color: darkblue;
+    color: rgb(250, 250, 254);
     font-weight: bold;
     text-decoration: overline;
 }
