@@ -6,6 +6,7 @@ const { useState } = React
 const { useNavigate } = ReactRouterDOM
 
 export function NotePreview({ note, setNotes }) {
+    const [isMouseOver, setIsMouseOver] = useState(false)
     const navigate = useNavigate()
 
     function onRemove(noteId) {
@@ -17,25 +18,25 @@ export function NotePreview({ note, setNotes }) {
         navigate(`/mail/inbox/${note.info.title}/${note.info.body}`)
     }
 
-    return <section className="note-preview" >
-        <DynamicCmp note={note} setNotes={setNotes} onRemove={onRemove} onSendMail={onSendMail}/>
+    return <section className="note-preview" onMouseOver={() => setIsMouseOver(true)} onMouseOut={() => setIsMouseOver(false)} >
+        <DynamicCmp note={note} setNotes={setNotes} onRemove={onRemove} onSendMail={onSendMail} isMouseOver={isMouseOver} />
     </section>
 }
 
-function DynamicCmp({ note, setNotes, onRemove, onSendMail }) {
+function DynamicCmp({ note, setNotes, onRemove, onSendMail, isMouseOver }) {
     switch (note.type) {
         case 'note-txt':
-            return <NoteTxt note={note} setNotes={setNotes} onRemove={onRemove} onSendMail={onSendMail} />
+            return <NoteTxt note={note} setNotes={setNotes} onRemove={onRemove} onSendMail={onSendMail} isMouseOver={isMouseOver} />
         case 'note-img':
-            return <NoteImg note={note} setNotes={setNotes} onRemove={onRemove} />
+            return <NoteImg note={note} setNotes={setNotes} onRemove={onRemove} isMouseOver={isMouseOver} />
         case 'note-video':
-            return <NoteVideo note={note} setNotes={setNotes} onRemove={onRemove} />
+            return <NoteVideo note={note} setNotes={setNotes} onRemove={onRemove} isMouseOver={isMouseOver} />
         case 'note-todos':
-            return <NoteTodos note={note} setNotes={setNotes} onRemove={onRemove} />
+            return <NoteTodos note={note} setNotes={setNotes} onRemove={onRemove} isMouseOver={isMouseOver} />
     }
 }
 
-function NoteTxt({ note, setNotes, onRemove, onSendMail }) {
+function NoteTxt({ note, setNotes, onRemove, onSendMail, isMouseOver }) {
     const [data, setData] = useState(note.info)
     const [isColor, setIsColor] = useState(false)
     return <section className="txt-container">
@@ -51,21 +52,23 @@ function NoteTxt({ note, setNotes, onRemove, onSendMail }) {
                 </blockquote>
             </div>
         </article>}
-        <button className='btn btn-rnd-s' onClick={() => setIsColor(!isColor)}>
-            <i className='fa-solid fa-palette'></i>
-            {isColor && <NoteColor noteId={note.id} setNotes={setNotes} />}
-        </button>
-        <button className='btn btn-rnd-s' onClick={() => onCopy(note.id, setNotes)}>
-            <i class="fa-solid fa-clone"></i>
-        </button>
-        <button onClick={() => onRemove(note.id)}><i className="fa-solid fa-trash"></i></button>
-        <button onClick={() => { togglePin(note, setNotes) }}><i className="fa-solid fa-thumbtack"></i></button>
-        <button onClick={() => onSendMail(note)}><i className="fa-solid fa-envelope"></i></button>
-        <button className="save-btn" onClick={() => saveNote(data, note.id)}>Save</button>
+        {isMouseOver && <div className="btns">
+            <button className='btn' onClick={() => setIsColor(!isColor)}>
+                <i className='fa-solid fa-palette'></i>
+                {isColor && <NoteColor noteId={note.id} setNotes={setNotes} />}
+            </button>
+            <button className='btn' onClick={() => onCopy(note.id, setNotes)}>
+                <i class="fa-solid fa-clone"></i>
+            </button>
+            <button className='btn' onClick={() => onRemove(note.id)}><i className="fa-solid fa-trash"></i></button>
+            <button className='btn' onClick={() => { togglePin(note, setNotes) }}><i className="fa-solid fa-thumbtack"></i></button>
+            <button className='btn' onClick={() => onSendMail(note)}><i className="fa-solid fa-envelope"></i></button>
+            <button className="save-btn" onClick={() => saveNote(data, note.id)}>Save</button>
+        </div>}
     </section>
 }
 
-function NoteImg({ note, setNotes, onRemove }) {
+function NoteImg({ note, setNotes, onRemove, isMouseOver }) {
     const [data, setData] = useState(note.info)
     const [isColor, setIsColor] = useState(false)
     return <section className="img-container">
@@ -79,21 +82,22 @@ function NoteImg({ note, setNotes, onRemove }) {
                 <img src={`${note.info.url}`} />
             </blockquote>
         </article>}
-        <button className='btn btn-rnd-s' onClick={() => setIsColor(!isColor)}>
-            <i className='fa-solid fa-palette'></i>
-            {isColor && <NoteColor noteId={note.id} setNotes={setNotes} />}
-        </button>
-        <button className='btn btn-rnd-s' onClick={() => onCopy(note.id, setNotes)}>
-            <i class="fa-solid fa-clone"></i>
-        </button>
-        <button onClick={() => onRemove(note.id)}><i className="fa-solid fa-trash"></i></button>
-        <button onClick={() => { togglePin(note, setNotes) }}><i className="fa-solid fa-thumbtack"></i></button>
-        <button onClick={() => onSendMail(note)}><i className="fa-solid fa-envelope"></i></button>
-        <button className="save-btn" onClick={() => saveNote(data, note.id)}>Save</button>
+        {isMouseOver && <div className="btns">
+            <button className='btn' onClick={() => setIsColor(!isColor)}>
+                <i className='fa-solid fa-palette'></i>
+                {isColor && <NoteColor noteId={note.id} setNotes={setNotes} />}
+            </button>
+            <button className='btn' onClick={() => onCopy(note.id, setNotes)}>
+                <i class="fa-solid fa-clone"></i>
+            </button>
+            <button className='btn' onClick={() => onRemove(note.id)}><i className="fa-solid fa-trash"></i></button>
+            <button className='btn' onClick={() => { togglePin(note, setNotes) }}><i className="fa-solid fa-thumbtack"></i></button>
+            <button className="save-btn" onClick={() => saveNote(data, note.id)}>Save</button>
+        </div>}
     </section >
 }
 
-function NoteVideo({ note, setNotes, onRemove }) {
+function NoteVideo({ note, setNotes, onRemove, isMouseOver }) {
     const [data, setData] = useState(note.info)
     const [isColor, setIsColor] = useState(false)
     return <section className="vid-container">
@@ -115,22 +119,22 @@ function NoteVideo({ note, setNotes, onRemove }) {
                 />
             </blockquote>
         </article>}
-        <button className='btn btn-rnd-s' onClick={() => setIsColor(!isColor)}>
-            <i className='fa-solid fa-palette'></i>
-            {isColor && <NoteColor noteId={note.id} setNotes={setNotes} />}
-        </button>
-        <button className='btn btn-rnd-s' onClick={() => onCopy(note.id, setNotes)}>
-            <i class="fa-solid fa-clone"></i>
-        </button>
-        <button onClick={() => onRemove(note.id)}><i className="fa-solid fa-trash"></i></button>
-        <button onClick={() => { togglePin(note, setNotes) }}><i className="fa-solid fa-thumbtack"></i></button>
-        <button onClick={() => onSendMail(note)}><i className="fa-solid fa-envelope"></i></button>
-        <button className="save-btn" onClick={() => saveNote(data, note.id)}>Save</button>
-
+        {isMouseOver && <div className="btns">
+            <button className='btn' onClick={() => setIsColor(!isColor)}>
+                <i className='fa-solid fa-palette'></i>
+                {isColor && <NoteColor noteId={note.id} setNotes={setNotes} />}
+            </button>
+            <button className='btn' onClick={() => onCopy(note.id, setNotes)}>
+                <i class="fa-solid fa-clone"></i>
+            </button>
+            <button className='btn' onClick={() => onRemove(note.id)}><i className="fa-solid fa-trash"></i></button>
+            <button className='btn' onClick={() => { togglePin(note, setNotes) }}><i className="fa-solid fa-thumbtack"></i></button>
+            <button className="save-btn" onClick={() => saveNote(data, note.id)}>Save</button>
+        </div>}
     </section >
 }
 
-function NoteTodos({ note, setNotes, onRemove }) {
+function NoteTodos({ note, setNotes, onRemove, isMouseOver }) {
     const [data, setData] = useState(note.info)
     const [isColor, setIsColor] = useState(false)
     return <section className="todos-container">
@@ -152,17 +156,18 @@ function NoteTodos({ note, setNotes, onRemove }) {
                 })}
             </ul>
         </article>}
-        <button className='btn btn-rnd-s' onClick={() => setIsColor(!isColor)}>
-            <i className='fa-solid fa-palette'></i>
-            {isColor && <NoteColor noteId={note.id} setNotes={setNotes} />}
-        </button>
-        <button className='btn btn-rnd-s' onClick={() => onCopy(note.id, setNotes)}>
-            <i class="fa-solid fa-clone"></i>
-        </button>
-        <button onClick={() => onRemove(note.id)}><i className="fa-solid fa-trash"></i></button>
-        <button onClick={() => { togglePin(note, setNotes) }}><i className="fa-solid fa-thumbtack"></i></button>
-        <button onClick={() => onSendMail(note)}><i className="fa-solid fa-envelope"></i></button>
-        <button className="save-btn" onClick={() => saveNote(data, note.id)}>Save</button>
+        {isMouseOver && <div className="btns">
+            <button className='btn' onClick={() => setIsColor(!isColor)}>
+                <i className='fa-solid fa-palette'></i>
+                {isColor && <NoteColor noteId={note.id} setNotes={setNotes} />}
+            </button>
+            <button className='btn' onClick={() => onCopy(note.id, setNotes)}>
+                <i class="fa-solid fa-clone"></i>
+            </button>
+            <button className='btn' onClick={() => onRemove(note.id)}><i className="fa-solid fa-trash"></i></button>
+            <button className='btn' onClick={() => { togglePin(note, setNotes) }}><i className="fa-solid fa-thumbtack"></i></button>
+            <button className="save-btn" onClick={() => saveNote(data, note.id)}>Save</button>
+        </div>}
     </section >
 }
 
