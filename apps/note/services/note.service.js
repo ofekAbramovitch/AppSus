@@ -65,7 +65,7 @@ function _createNote(type, info) {
         id: utilService.makeId(),
         type,
         isPinned: false,
-        backgroundColor: 'note.backgroundColor',
+        backgroundColor: 'snow',
         info,
     }
 }
