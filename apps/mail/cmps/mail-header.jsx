@@ -22,6 +22,7 @@ export function MailHeader({ onSetFilter, screenWidth }) {
                 <NavLink to="/">Home</NavLink>
                 <NavLink to="/about">About</NavLink>
                 <NavLink to="/mail">Mail</NavLink>
+                <NavLink to="/book">Book</NavLink>
                 <NavLink to="/note">Note</NavLink>
             </nav>}
         </div>
